@@ -1,0 +1,151 @@
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Modal Container */
+.modal {
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Top-Right Close Button */
+.top-close-button {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.top-close-button:hover {
+  color: #ffcccc;
+}
+
+/* Modal Header */
+.modal-header {
+  background-color: #004080;
+  color: #fff;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px;
+  background-color: #f5f5f5;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Fee Table */
+.fee-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background-color: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fee-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.fee-table td:first-child {
+  font-weight: 500;
+  background-color: #f0f6ff;
+  color: #003366;
+  width: 60%;
+}
+
+.fee-table td:last-child {
+  text-align: right;
+  color: #333;
+}
+
+.fee-table tr.total-row td {
+  font-weight: bold;
+  background-color: #e6f2ff;
+  border-top: 2px solid #004080;
+}
+
+/* Optional Close Button (bottom) */
+.close-button {
+  background-color: #c62828;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-top: 16px;
+}
+
+.close-button:hover {
+  background-color: #b71c1c;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .modal {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 6px;
+  }
+
+  .fee-table td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .modal-header {
+    font-size: 14px;
+  }
+
+  .close-button {
+    width: 100%;
+    float: none;
+    margin-top: 20px;
+  }
+}
