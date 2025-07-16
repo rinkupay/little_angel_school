@@ -11,7 +11,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Use of Cors
 app.use(cors({
-    origin: ["https://little-angel-school-client.onrender.com"],
+    origin: ["https://little-angel-school-client.onrender.com","https://little-angel-school-ug9i.vercel.app"],
     methods:["POST","GET","DELETE","PUT","PATCH"],
     credentials: true
 }));
