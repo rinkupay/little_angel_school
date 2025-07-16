@@ -107,6 +107,7 @@ const SideBar = ({ setIsMenu }) => {
     setIsMenu(false);
   };
   const handleFinancialReport = () => {
+    navigate("/financial-report")
     setIsMenu(false);
   };
 
@@ -224,17 +225,27 @@ const SideBar = ({ setIsMenu }) => {
                 onClick={goToStudentReport}
                 // sx={{ fontSize: "1.2rem", color: "white", margin: "12px" }}
               />
+
+              <TreeItem
+                itemId="grid-student-fin-repo"
+                label="Financial Reports"
+                onClick={handleFinancialReport}
+                // sx={{ fontSize: "1.2rem", color: "white", margin: "12px" }}
+              />
+
+
+
             </TreeItem>
           </SimpleTreeView>
 
-          <NavLink
+          {/* <NavLink
             className="sidebar-menu"
             to="/financial-report"
             onClick={handleFinancialReport}
           >
             <PiChalkboardTeacherThin size={20} />{" "}
             <p className="menu-title">Financial Report</p>
-          </NavLink>
+          </NavLink> */}
 
           <p className="menu-title module">Employee Module</p>
 
