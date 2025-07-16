@@ -140,14 +140,14 @@ const SideBar = ({ setIsMenu }) => {
             <p className="menu-title">Student Enquiry </p>
           </NavLink>
 
-          <NavLink
+          <p
             className="sidebar-menu"
             // to="/register-student"
             onClick={handleNewAdmission}
           >
             <IoMdPersonAdd size={20} />{" "}
             <p className="menu-title">New Admisson </p>
-          </NavLink>
+          </p>
 
           <NavLink
             className="sidebar-menu"
