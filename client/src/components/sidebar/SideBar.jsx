@@ -64,6 +64,7 @@ const SideBar = ({ setIsMenu }) => {
     setIsMenu(false);
   };
   const handleNewAdmission = () => {
+    navigate("/register-student")
     setIsMenu(false);
   };
   const handleSearchStudent = () => {
@@ -141,7 +142,7 @@ const SideBar = ({ setIsMenu }) => {
 
           <NavLink
             className="sidebar-menu"
-            to="/register-student"
+            // to="/register-student"
             onClick={handleNewAdmission}
           >
             <IoMdPersonAdd size={20} />{" "}
