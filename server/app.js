@@ -11,7 +11,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Use of Cors
 app.use(cors({
-    origin: ["http://localhost:4173"],
+    origin: ["https://little-angel-school-client.onrender.com"],
     methods:["POST","GET","DELETE","PUT","PATCH"],
     credentials: true
 }));
