@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import  { Fragment } from "react";
 import "./SideBar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,17 +50,15 @@ const SideBar = ({ setIsMenu }) => {
     setIsMenu(false);
   };
 
-  const handleSchoolDetails = () => {
-    navigate(`/school-details`);
-    setIsMenu(false);
-  };
+
 
   const logoutUser = async () => {
-    dispatch(logoutAdmin());
-    dispatch(logout());
+   await dispatch(logoutAdmin());
+   await dispatch(logout());
   };
 
   const handleStudentEnquiry = () => {
+    navigate("/student-enquiry")
     setIsMenu(false);
   };
   const handleNewAdmission = () => {
@@ -68,43 +66,60 @@ const SideBar = ({ setIsMenu }) => {
     setIsMenu(false);
   };
   const handleSearchStudent = () => {
+    navigate("/search-student")
     setIsMenu(false);
   };
   const handleActiveStudent = () => {
+    navigate("/students-active")
     setIsMenu(false);
   };
 
   const handlePromote = () => {
+    navigate("/student-progression")
     setIsMenu(false);
   };
   const handleTransaction = () => {
+    navigate("/transaction")
     setIsMenu(false);
   };
   const handleTransactionRollback = () => {
+    navigate("/transaction-rollback")
     setIsMenu(false);
   };
   const handleStatics = () => {
+    navigate("/statistics")
     setIsMenu(false);
   };
   const handleAddTeacher = () => {
+    navigate("/add-teacher")
     setIsMenu(false);
   };
   const handleAllTeacher = () => {
+    navigate("/teachers")
     setIsMenu(false);
   };
   const handleAllTeacherTransaction = () => {
+    navigate("/teacher-transactions")
     setIsMenu(false);
   };
   const handleAllAdmins = () => {
+    navigate("/all-admins")
     setIsMenu(false);
   };
   const handleFeeSettings = () => {
+    navigate("/fee-settings")
+    setIsMenu(false);
+  };
+    const handleSchoolDetails = () => {
+    navigate(`/school-details`);
     setIsMenu(false);
   };
   const handleActivation = () => {
+    navigate("/emp-activation")
     setIsMenu(false);
   };
   const handleSectionShift = () => {
+    navigate("/section-shift")
     setIsMenu(false);
   };
   const handleFinancialReport = () => {
@@ -122,23 +137,23 @@ const SideBar = ({ setIsMenu }) => {
 
         <div className="sidebar-menues">
           <p className="menu-title module">Statistics</p>
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/statistics"
+            // to="/statistics"
             onClick={handleStatics}
           >
             <IoStatsChart size={20} /> <p className="menu-title">Statistics</p>
-          </NavLink>
+          </p>
 
           <p className="menu-title module">Student Module </p>
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/student-enquiry"
+            // to="/student-enquiry"
             onClick={handleStudentEnquiry}
           >
             <HiInformationCircle size={20} />{" "}
             <p className="menu-title">Student Enquiry </p>
-          </NavLink>
+          </p>
 
           <p
             className="sidebar-menu"
@@ -149,60 +164,60 @@ const SideBar = ({ setIsMenu }) => {
             <p className="menu-title">New Admisson </p>
           </p>
 
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/search-student"
+            // to="/search-student"
             onClick={handleSearchStudent}
           >
             <BiSearchAlt2 size={20} />{" "}
             <p className="menu-title">Search Student </p>
-          </NavLink>
+          </p>
 
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/students-active"
+            // to="/students-active"
             onClick={handleActiveStudent}
           >
             <FaPeopleGroup size={20} />{" "}
             <p className="menu-title">All Students </p>
-          </NavLink>
+          </p>
 
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/transaction"
+            // to="/transaction"
             onClick={handleTransaction}
           >
             <GrTransaction size={20} />{" "}
             <p className="menu-title">Transactions</p>
-          </NavLink>
+          </p>
 
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/transaction-rollback"
+            // to="/transaction-rollback"
             onClick={handleTransactionRollback}
           >
             <MdOutlineSettingsBackupRestore size={20} />{" "}
             <p className="menu-title">Roll Back Payment</p>
-          </NavLink>
+          </p>
 
           <p className="menu-title module">Progression Module</p>
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/student-progression"
+            // to="/student-progression"
             onClick={handlePromote}
           >
             <FaPeopleArrows size={20} />{" "}
             <p className="menu-title">Student Progression</p>
-          </NavLink>
+          </p>
 
           {/* SECTION SHIFT */}
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/section-shift"
+            // to="/section-shift"
             onClick={handleSectionShift}
           >
             <BsRepeat size={20} /> <p className="menu-title">Section Shift</p>
-          </NavLink>
+          </p>
 
           <p className="menu-title module">Generate Report</p>
 
@@ -250,55 +265,55 @@ const SideBar = ({ setIsMenu }) => {
 
           <p className="menu-title module">Employee Module</p>
 
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/add-teacher"
+            // to="/add-teacher"
             onClick={handleAddTeacher}
           >
             <PiChalkboardTeacherThin size={20} />{" "}
             <p className="menu-title">Add Employee</p>
-          </NavLink>
+          </p>
 
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/teachers"
+            // to="/teachers"
             onClick={handleAllTeacher}
           >
             <FaChalkboardTeacher size={20} />{" "}
             <p className="menu-title">All Employees</p>
-          </NavLink>
+          </p>
 
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/emp-activation"
+            // to="/emp-activation"
             onClick={handleActivation}
           >
             <TbTransactionRupee size={20} />{" "}
             <p className="menu-title">Activation</p>
-          </NavLink>
+          </p>
 
-          <NavLink
+          <p
             className="sidebar-menu"
-            to="/teacher-transactions"
+            // to="/teacher-transactions"
             onClick={handleAllTeacherTransaction}
           >
             <TbTransactionRupee size={20} />{" "}
             <p className="menu-title">Payment History</p>
-          </NavLink>
+          </p>
 
           {/* ADMIN MODULE RENDER ONLY ADMIN CAN ACCESS*/}
 
           {data?.role === "super" && (
             <>
               <p className="menu-title module">Admin Module</p>
-              <NavLink
+              <p
                 className="sidebar-menu"
-                to="/all-admins"
+                // to="/all-admins"
                 onClick={handleAllAdmins}
               >
                 <FaChalkboardTeacher size={20} />{" "}
                 <p className="menu-title">All Users</p>
-              </NavLink>
+              </p>
             </>
           )}
 
@@ -328,23 +343,23 @@ const SideBar = ({ setIsMenu }) => {
 
           {data.role === "super" && (
             <Fragment>
-              <NavLink
+              <p
                 className="sidebar-menu"
-                to="/fee-settings"
+                // to="/fee-settings"
                 onClick={handleFeeSettings}
               >
                 <TbSettingsDollar size={20} />{" "}
                 <p className="menu-title">Fee Settings</p>
-              </NavLink>
+              </p>
 
-              <NavLink
+              <p
                 className="sidebar-menu"
-                to="/school-details"
+                // to="/school-details"
                 onClick={handleSchoolDetails}
               >
                 <TbHomeCog size={20} />{" "}
                 <p className="menu-title">School Settings</p>
-              </NavLink>
+              </p>
             </Fragment>
           )}
 
