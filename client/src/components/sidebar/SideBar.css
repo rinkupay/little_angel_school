@@ -37,6 +37,10 @@
     overflow-y: auto;
     max-height: calc(100vh - 60px); /* Adjust to fit screen */
     padding-bottom: 1rem;
+    
+}
+.sidebar-menues .sidebar-menu{
+    cursor: pointer;
 }
 /* Menu Title */
 .menu-title.module{
