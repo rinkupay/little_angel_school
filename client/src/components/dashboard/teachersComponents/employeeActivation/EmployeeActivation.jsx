@@ -80,7 +80,8 @@ const EmployeeActivation = () => {
   };
 
   const columns = [
-    { field: "sno", headerName: "S.No.", minWidth: 80, flex: 0.8 },
+    { field: "sno", headerName: "S.No.", minWidth: 80, flex: 0 },
+    { field: "eid", headerName: "Employee Id", minWidth: 80, flex: 0.2 },
     { field: "employeeName", headerName: "Name", minWidth: 180, flex: 0.2 },
     { field: "employeeRole", headerName: "Role", minWidth: 100, flex: 0.2 },
     { field: "employeeJoin", headerName: "Joining", minWidth: 100, flex: 0.2 },
@@ -157,6 +158,7 @@ const EmployeeActivation = () => {
 
   const rows = teachers.map((teacher, index) => ({
     sno: index + 1,
+    eid: teacher.teacherId,
     id: teacher._id,
     employeeName: teacher.personalInfo.fullName,
     employeeRole: teacher.employeeRole,

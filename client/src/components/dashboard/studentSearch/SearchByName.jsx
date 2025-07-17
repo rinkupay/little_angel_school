@@ -34,6 +34,7 @@ const SearchByName = () => {
       );
 
       const data = await response.json();
+ 
 
       if (data.success) {
         setStudents(data.students);
@@ -117,6 +118,7 @@ const SearchByName = () => {
             <thead>
               <tr>
                 <th>Sl No.</th>
+                <th>Student ID</th>
                 <th>Name</th>
                 <th>Father Name</th>
                 <th>Roll No</th>
@@ -130,6 +132,7 @@ const SearchByName = () => {
                 {students.map((student, index) => (
                   <tr className={styles.sstudentRow} key={student._id}>
                     <td className={styles.sstudentData}>{index + 1}</td>
+                    <td className={styles.sstudentData}>{student.studentId}</td>
                     <td className={styles.sstudentData}>
                       {student.personalInfo.fullName}
                     </td>
@@ -160,6 +163,9 @@ const SearchByName = () => {
               <tbody>
                 <tr className={styles.sstudentRow}>
                   <td className={styles.sstudentData}>{1}</td>
+                    <td className={styles.sstudentData}>
+                    {studentData?.studentId}
+                  </td>
                   <td className={styles.sstudentData}>
                     {studentData?.personalInfo?.fullName}
                   </td>

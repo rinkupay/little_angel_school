@@ -1,6 +1,6 @@
 import  { Fragment } from "react";
 import "./SideBar.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { MdDashboardCustomize } from "react-icons/md";
 import { GrTransaction } from "react-icons/gr";
@@ -232,21 +232,21 @@ const SideBar = ({ setIsMenu }) => {
                 itemId="grid-community"
                 label="Due Fees"
                 onClick={goToDueReport}
-                sx={{ fontSize: "1.2rem", color: "white", margin: "12px" }}
+                sx={{ fontSize: "1.2rem", color: "white", margin: "10px" }}
               />
 
               <TreeItem
                 itemId="grid-student-repo"
                 label="Student Reports"
                 onClick={goToStudentReport}
-                // sx={{ fontSize: "1.2rem", color: "white", margin: "12px" }}
+                sx={{ fontSize: "1.2rem", color: "white", margin: "10px" }}
               />
 
               <TreeItem
                 itemId="grid-student-fin-repo"
                 label="Financial Reports"
                 onClick={handleFinancialReport}
-                // sx={{ fontSize: "1.2rem", color: "white", margin: "12px" }}
+                sx={{ fontSize: "1.2rem", color: "white", margin: "10px" }}
               />
 
 
