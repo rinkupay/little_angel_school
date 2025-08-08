@@ -59,6 +59,12 @@
     display: flex;
 }
 
+.profile-add-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
 .student-profile-picture {
     width: 120px;
     height: 120px;

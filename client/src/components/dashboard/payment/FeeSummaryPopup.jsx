@@ -16,6 +16,7 @@ const FeeSummaryPopup = ({ receipt, onClose }) => {
           <h3>Fee Summary</h3>
           <table className="fee-table">
             <tbody>
+                   <tr><td>Admission Fee</td><td>{receipt?.admissionFee || 0}</td></tr>
               <tr><td>Tuition Fee</td><td>{receipt?.tutionFee || 0}</td></tr>
               <tr><td>Hostel Fee</td><td>{receipt?.hostelFee || 0}</td></tr>
               <tr><td>Bus Fee</td><td>{receipt?.busFee || 0}</td></tr>

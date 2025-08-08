@@ -378,8 +378,8 @@ const StudentUpdate = () => {
           <div className="dashboard-right">
             <h2 className="dashboard-heading">UPDATE STUDENT</h2>
             <NavButton id={id} />
-            <div className="register-container">
-              <div className="container">
+            <div className="update-container">
+              <div className="student-update-container">
                 {/* <h1>XYZ College/School</h1> */}
                 <h2>Student Updation Form</h2>
                 <div className="form-wrapper">

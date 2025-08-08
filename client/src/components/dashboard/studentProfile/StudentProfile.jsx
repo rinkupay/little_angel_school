@@ -107,8 +107,11 @@ handleGenerateFeeMemo(id)
                         </div>
                         <div className="profile-add-details">
                           <h3 className="student-add-det">
-                            Student ID : {data?.studentId}
+                            Admission No. : {data?.admissionNo}
                           </h3>
+                          {/* <h3 className="student-add-det">
+                            Student ID : {data?.studentId}
+                          </h3> */}
                           <h3 className="student-add-det">
                             Class : {data?.academicInfo?.std}
                           </h3>
@@ -205,6 +208,24 @@ handleGenerateFeeMemo(id)
                         <table className="student-table">
                           <thead></thead>
                           <tbody>
+
+                            <tr>
+                              <td className="first-box">Admission No.</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.academicInfo?.admissionNo}
+                              </td>
+                            </tr>
+
+                             <tr>
+                              <td className="first-box">Aadhar No.</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.aadhar || "N/A"}
+                              </td>
+                            </tr>
+
+
                           <tr>
                               <td className="first-box">Class</td>
                               <td className="middle-box">:</td>
@@ -244,28 +265,28 @@ handleGenerateFeeMemo(id)
                               <td className="first-box">Admission Fee</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
-                                {data?.academicInfo?.admissionFee}
+                                {data?.academicInfo?.admissionFee || "N/A"}
                               </td>
                             </tr>
                             <tr>
                               <td className="first-box">Tution Fee</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
-                                {data?.academicInfo?.tutionFee}
+                                {data?.academicInfo?.tutionFee || "N/A"}
                               </td>
                             </tr>
                             <tr>
                               <td className="first-box">Bus Fee</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
-                                {data?.academicInfo?.busFee}
+                                {data?.academicInfo?.busFee || "N/A"}
                               </td>
                             </tr>
                             <tr>
                               <td className="first-box">Hostel Fee</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
-                                {data?.academicInfo?.hostelFee}
+                                {data?.academicInfo?.hostelFee || "N/A"}
                               </td>
                             </tr>
 
@@ -300,12 +321,36 @@ handleGenerateFeeMemo(id)
                               </td>
                             </tr>
                             <tr>
+                              <td className="first-box">Father's Occupation</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.fatherOccupation || "N/A"}
+                              </td>
+                            </tr>
+                            <tr>
                               <td className="first-box">Mother's Name</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
                                 {data?.personalInfo?.motherName}
                               </td>
                             </tr>
+
+                             <tr>
+                              <td className="first-box">Mother's Occupation</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.motherOccupation || "N/A"}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="first-box">Annual Family Income</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.familyIncome || "N/A"}
+                              </td>
+                            </tr>
+                            
                             <tr>
                               <td className="first-box">Guardian's Name</td>
                               <td className="middle-box">:</td>

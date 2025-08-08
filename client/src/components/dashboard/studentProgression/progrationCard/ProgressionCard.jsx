@@ -181,8 +181,8 @@ dispatch(fetchFees());
                 {sdata.personalInfo.fullName}
               </p>
               <p>
-                <strong>S.ID:</strong>
-                {sdata.studentId}
+                <strong>Admission No.:</strong>
+                {sdata.admissionNo}
               </p>
 
               <p>

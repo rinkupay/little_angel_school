@@ -19,6 +19,7 @@ const {
   correctStudentProgression,
   setEmailSms,
   updateStudentSection,
+  searchStudentByAadhar,
 } = require("../controllers/studentControllers");
 const upload = require("../middleware/multer");
 
@@ -37,6 +38,11 @@ router.route("/student-documents/:id").post(
     { name: "tc", maxCount: 1 },
     { name: "cc", maxCount: 1 },
     { name: "rc", maxCount: 1 },
+    { name: "admission", maxCount: 1 },
+    { name: "admissionReceipt", maxCount: 1 },
+    { name: "issuedtc", maxCount: 1 },
+    { name: "issuedcc", maxCount: 1 },
+    { name: "other", maxCount: 1 },
   ]),
   isAuthenticatedUser,
   authorizeRole("admin","super"),
@@ -70,6 +76,11 @@ router
 router
   .route("/studentBySchoolId")
   .get(isAuthenticatedUser, authorizeRole("admin","super"), searchStudentBySchoolId); // ADMIN ROUTE
+
+
+  router
+  .route("/studentByAadhar")
+  .get(isAuthenticatedUser, authorizeRole("admin","super"), searchStudentByAadhar); // ADMIN ROUTE
 
   router.route("/progression/:id").patch(isAuthenticatedUser,authorizeRole("admin","super"),setProgression);  // ADMIN ROUTE
   router.route("/progression-update/:id").patch(isAuthenticatedUser,authorizeRole("admin","super"),correctStudentProgression);  // ADMIN ROUTE

@@ -1,4 +1,4 @@
-.register-container .container {
+.update-container .student-update-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,30 +9,30 @@
     padding: 30px;
 }
 
-.register-container .register-container.container h1 {
+.update-container .update-container.student-update-container h1 {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(59, 55, 55);
     font-size: 30px; /* Increased font size */
     margin-bottom: 15px;
 }
 
-.register-container .container h2 {
+.update-container .container h2 {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(59, 55, 55);
     font-size: 24px; /* Increased font size */
     margin-top: 10px;
 }
 
-.register-container .form-wrapper {
+.update-container .form-wrapper {
     margin: 20px;
     width: 100%;
 }
 
-.register-container .form {
+.update-container .form {
     width: 100%;
 }
 
-.register-container #studentimage {
+.update-container #studentimage {
     width: 20rem;
     height: 3rem;
     font-size: 16px;
@@ -41,7 +41,7 @@
     cursor: pointer;
 }
 
-.register-container .image {
+.update-container .image {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -49,7 +49,7 @@
     margin-left: 1rem;
 }
 
-.register-container .image-btn {
+.update-container .image-btn {
     background-color: #1e90ff;
     margin-left: 1rem;
     padding: 0.5rem 0.8rem;
@@ -59,17 +59,17 @@
     color: white;
 }
 
-.register-container .profile-image {
+.update-container .profile-image {
     width: 100%;
     object-fit: cover;
     border-radius: 100%;
 }
 
-.register-container p {
+.update-container p {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.register-container .form-item {
+.update-container .form-item {
     display: flex;
     margin: 6px 0;
     align-items: center;
@@ -78,13 +78,13 @@
     justify-content: flex-start; /* Aligns items to the left */
 }
 
-.register-container .form-item label {
+.update-container .form-item label {
     width: 180px;
     font-size: 16px; /* Larger font size for readability */
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.register-container .form-item input {
+.update-container .form-item input {
     margin: 5px 15px;
     height: 2.5rem;
     width: 60%;
@@ -96,20 +96,20 @@
     border-color: #1e90ff;
 }
 
-.register-container .form-item select {
+.update-container .form-item select {
     margin: 5px 0px;
     width: 12rem; /* Adjust width of select */
 }
 
-.register-container .date-container {
+.update-container .date-container {
     width: 100%;
 }
 
-.register-container .date-of-birth {
+.update-container .date-of-birth {
     padding: 0 1rem;
 }
 
-.register-container .class-item:not(.unstyle) {
+.update-container .class-item:not(.unstyle) {
     width: 100%;
     max-width: 60%;
     height: 2.5rem;
@@ -118,41 +118,41 @@
     margin-top: 10px;
 }
 
-.register-container .class-item-class {
+.update-container .class-item-class {
     width: 12rem;
     height: 2.5rem;
     padding: 0 0.5rem;
     margin: 0 1rem;
 }
 
-.register-container .section:not(.unstyle) {
+.update-container .section:not(.unstyle) {
     margin: 0;
 }
 
-.register-container .section-item {
+.update-container .section-item {
     margin-left: 3rem;
 }
 
-.register-container .section-container {
+.update-container .section-container {
     margin-left: 2rem;
 }
 
-.register-container .section-container > label {
+.update-container .section-container > label {
     margin-right: 1rem;
 }
 
-.register-container .select-section {
+.update-container .select-section {
     width: 12rem;
     height: 2rem;
     padding: 0.5rem;
 }
 
-.register-container .bus-fee:not(.unstyle) {
+.update-container .bus-fee:not(.unstyle) {
     width: 20px;
     height: 20px;
 }
 
-.register-container .genders {
+.update-container .genders {
     display: flex;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -161,23 +161,23 @@
     justify-content: flex-start;
 }
 
-.register-container .genders input {
+.update-container .genders input {
     width: 20px;
     margin-right: 10px;
 }
 
-.register-container hr {
+.update-container hr {
     margin-top: 15px;
     margin-bottom: 18px;
     width: 100%;
 }
 
-.register-container h3 {
+.update-container h3 {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.register-container .same-perm {
+.update-container .same-perm {
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
@@ -185,7 +185,7 @@
     margin: 5px 105px;
 }
 
-.register-container .register-btn {
+.update-container .register-btn {
     margin: 25px;
     background: #1e90ff;
     font-size: 20px;
@@ -200,75 +200,75 @@
     justify-content: center;
 }
 
-.register-container .register-button {
+.update-container .register-button {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 0.5rem;
 }
 
-.register-container .register-btn:hover {
+.update-container .register-btn:hover {
     color: #3a3636;
 }
 
 @media screen and (max-width: 640px) {
     /* Mobile-specific styles are unchanged */
-    .register-container .container {
+    .update-container .container {
         width: 100vw;
         padding: 15px 5px;
     }
 
-    .register-container .form-item label {
+    .update-container .form-item label {
         font-size: 13px;
         width: auto;
     }
 
-    .register-container .form-item input {
+    .update-container .form-item input {
         margin: 5px 0;
         font-size: 14px;
         width: 100%;
     }
 
-    .register-container .genders {
+    .update-container .genders {
         margin-left: 0;
         font-size: 12px;
         justify-content: flex-start;
     }
 
-    .register-container .genders input {
+    .update-container .genders input {
         width: 15px;
         margin-right: 5px;
     }
 
-    .register-container .same-perm {
+    .update-container .same-perm {
         font-size: 12px;
         margin: 10px 0;
     }
 
-    .register-container .register {
+    .update-container .register {
         font-size: 16px;
         padding: 10px;
         width: 100%;
     }
 
-    .register-container .form-item {
+    .update-container .form-item {
         width: 100%;
         justify-content: space-between;
         flex-wrap: wrap;
     }
 
-    .register-container .class-item-class,
-    .register-container .select-section,
-    .register-container .date-of-birth {
+    .update-container .class-item-class,
+    .update-container .select-section,
+    .update-container .date-of-birth {
         width: 100%;
     }
 
-    .register-container .class-item:not(.unstyle) {
+    .update-container .class-item:not(.unstyle) {
         margin-left: 0;
         width: 100%;
     }
 
-    .register-container .register-button {
+    .update-container .register-button {
         margin-top: 20px;
     }
 }

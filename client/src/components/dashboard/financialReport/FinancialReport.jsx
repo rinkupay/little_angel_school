@@ -4,6 +4,7 @@ import "../Dashboard.css";
 import "./FinancialReport.css";
 import { fetchTotalAmount } from "../../../features/statisticSlice";
 import { fetchTeacherTotalAmount } from "../../../features/teacherStatistic";
+import {fetchSchoolDetails} from "../../../features/schoolDetailsSlice/schoolDetailSlice"
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../loader/Loader";
 import {
@@ -26,6 +27,8 @@ const FinancialReport = () => {
     (state) => state.statistic
   );
   const { teacherTotalAmount } = useSelector((state) => state.teacherStatistic);
+  const {schoolDetails} = useSelector((state)=>state.schoolDetails)
+
   const dispatch = useDispatch();
 
   const [currentMonth, setCurrentMonth] = useState("");
@@ -97,6 +100,11 @@ const FinancialReport = () => {
   useEffect(() => {
     setCurrentMonth(defaultCurrentMonth);
   }, []);
+
+
+  useEffect(()=>{
+         dispatch(fetchSchoolDetails());
+  },[])
 
   //   FETCH STUDENT TOTAL AMOUNT
 
@@ -233,8 +241,8 @@ const FinancialReport = () => {
                   <div className="print-form-sec" id="print-content">
                   <div className="report-header">
                     <div className="report-header-left">
-                      <h2>XYZ School</h2>
-                      <p>123 School Road, City, State, ZIP</p>
+                      <h2>{schoolDetails?.schoolName}</h2>
+                      <p>{schoolDetails?.schoolAddress}</p>
                     </div>
                     <div className="report-header-right">
                       <p>

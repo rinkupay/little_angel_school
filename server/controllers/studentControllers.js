@@ -11,20 +11,28 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
   const academicInfo = JSON.parse(req.body.academicInfo);
   const permanentAddress = JSON.parse(req.body.permanentAddress);
   const temporaryAddress = JSON.parse(req.body.temporaryAddress);
+ 
+
 
   const studentId = await generateStudentId();
 
   const image = req.file ? req.file.path : null;
 
   const student = new Student({
+
     studentId: studentId,
+    aadhar: Number(personalInfo.aadhar),
+    admissionNo: Number(academicInfo.admissionNo),
 
     profileImage: image,
 
     personalInfo: {
       fullName: personalInfo.fullName,
+      familyIncome: personalInfo.familyIncome,
       motherName: personalInfo.motherName,
+      motherOccupation: personalInfo.motherOccupation,
       fatherName: personalInfo.fatherName,
+      fatherOccupation: personalInfo.fatherOccupation,
       gardianName: personalInfo.gardianName,
       dob: personalInfo.dob,
       gender: personalInfo.gender,
@@ -35,6 +43,7 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
       mobile: personalInfo.mobile,
     },
     academicInfo: {
+      admissionNo : Number(academicInfo.admissionNo),
       academicYear: academicInfo.academicYear,
       std: academicInfo.std,
       section: academicInfo.section,
@@ -76,81 +85,8 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
 
 
 
-// // Utility function to handle file deletion
-// const deleteOldFiles = (oldFiles, documents) => {
-//   oldFiles.forEach(({ field, path, newFile }) => {
-//     if (newFile && path !== newFile[0].path) {
-//       // If a new file is uploaded and it is different from the old file, delete the old file
-//       fs.unlink(path, (err) => {
-//         if (err) {
-//           console.error(`Failed to delete file ${path}`, err);
-//         } else {
-//           console.log(`Successfully deleted old file ${path}`);
-//         }
-//       });
-//     }
-//   });
-// };
 
-// // General function to upload or update documents
-// const handleDocumentUpload = async (id, documents, existingDocument) => {
-//   // Prepare document data
-//   const documentData = {
-//     studentId: id,
-//     aadhar: documents.aadhar ? documents.aadhar[0].path : existingDocument?.aadhar,
-//     tc: documents.tc ? documents.tc[0].path : existingDocument?.tc,
-//     cc: documents.cc ? documents.cc[0].path : existingDocument?.cc,
-//     rc: documents.rc ? documents.rc[0].path : existingDocument?.rc,
-//   };
-
-//   // If documents already exist, update them
-//   if (existingDocument) {
-//     // Prepare old file paths for deletion
-//     const oldFiles = [
-//       { field: 'aadhar', path: existingDocument.aadhar, newFile: documents.aadhar },
-//       { field: 'tc', path: existingDocument.tc, newFile: documents.tc },
-//       { field: 'cc', path: existingDocument.cc, newFile: documents.cc },
-//       { field: 'rc', path: existingDocument.rc, newFile: documents.rc },
-//     ];
-
-//     // Delete old files if they are being replaced
-//     deleteOldFiles(oldFiles, documents);
-
-//     // Update the existing document with the new files
-//     await Document.findOneAndUpdate({ studentId: id }, documentData, { new: true });
-//     return { message: "Student documents updated successfully!" };
-//   }
-
-//   // If no existing document, create a new one
-//   await Document.create(documentData);
-//   return { message: "Student documents uploaded successfully!" };
-// };
-
-// // UPLOAD STUDENT DOCUMENTS
-// exports.uploadStudentDocuments = catchAsyncErrors(async (req, res, next) => {
-//   const { id } = req.params; // Get student ID
-//   const documents = req.files; // Files from the request
-
-//   // Find if the student already has documents uploaded
-//   const existingDocument = await Document.findOne({ studentId: id });
-
-//   // If no files (Aadhar, TC, CC, RC) are uploaded, return an error
-//   if (!documents.aadhar && !documents.tc && !documents.cc && !documents.rc) {
-//     return res.status(400).json({
-//       message: "At least one document (Aadhar, TC, CC, RC) must be provided for upload.",
-//     });
-//   }
-
-//   // Handle document upload/update
-//   try {
-//     const result = await handleDocumentUpload(id, documents, existingDocument);
-//     return res.status(200).json(result);
-//   } catch (err) {
-//     return res.status(500).json({
-//       message: "Something went wrong while uploading the documents.",
-//     });
-//   }
-// });
+// HAndle Upload documents
 
 
 const deleteOldFiles = (oldFiles) => {
@@ -174,6 +110,11 @@ const handleDocumentUpload = async (id, documents, existingDocument) => {
     tc: documents.tc ? documents.tc[0].path : existingDocument?.tc,
     cc: documents.cc ? documents.cc[0].path : existingDocument?.cc,
     rc: documents.rc ? documents.rc[0].path : existingDocument?.rc,
+    admission: documents.admission ? documents.admission[0].path : existingDocument?.admission,
+    admissionReceipt: documents.admissionReceipt ? documents.admissionReceipt[0].path : existingDocument?.admissionReceipt,
+    issuedtc: documents.issuedtc ? documents.issuedtc[0].path : existingDocument?.issuedtc,
+    issuedtc: documents.issuedcc ? documents.issuedcc[0].path : existingDocument?.issuedcc,
+    other: documents.other ? documents.other[0].path : existingDocument?.other,
   };
 
   if (existingDocument) {
@@ -182,6 +123,11 @@ const handleDocumentUpload = async (id, documents, existingDocument) => {
       existingDocument?.tc ? { field: "tc", path: existingDocument.tc, newFile: documents.tc } : null,
       existingDocument?.cc ? { field: "cc", path: existingDocument.cc, newFile: documents.cc } : null,
       existingDocument?.rc ? { field: "rc", path: existingDocument.rc, newFile: documents.rc } : null,
+      existingDocument?.admission ? { field: "admission", path: existingDocument.admission, newFile: documents.admission } : null,
+      existingDocument?.admissionReceipt ? { field: "admissionReceipt", path: existingDocument.admissionReceipt, newFile: documents.admissionReceipt } : null,
+      existingDocument?.issuedtc ? { field: "issuedtc", path: existingDocument.issuedtc, newFile: documents.issuedtc } : null,
+      existingDocument?.issuedcc ? { field: "issuedcc", path: existingDocument.issuedcc, newFile: documents.issuedcc } : null,
+      existingDocument?.other ? { field: "other", path: existingDocument.other, newFile: documents.other } : null,
     ].filter(Boolean);
 
     deleteOldFiles(oldFiles);
@@ -197,7 +143,8 @@ exports.uploadStudentDocuments = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
   const documents = req.files;
 
-  if (!documents.aadhar && !documents.tc && !documents.cc && !documents.rc) {
+
+  if (!documents.aadhar && !documents.tc && !documents.cc && !documents.rc && !documents.admission && !documents.admissionReceipt && !documents.issuedtc && !documents.issuedcc && !documents.other) {
     return res.status(400).json({
       message: "At least one document (Aadhar, TC, CC, RC) must be provided for upload.",
     });
@@ -546,7 +493,7 @@ exports.searchStudentBySchoolId = catchAsyncErrors(async (req, res, next) => {
   const { schoolId } = req.query;
 
   try {
-    const student = await Student.findOne({ studentId: schoolId }); // Find a student by school ID
+    const student = await Student.findOne({ admissionNo: schoolId }); // Find a student by school ID
 
     if (!student) {
       // If no student is found
@@ -568,6 +515,40 @@ exports.searchStudentBySchoolId = catchAsyncErrors(async (req, res, next) => {
     });
   }
 });
+
+
+
+
+// SEARCH BY AADHAR  (ADMIN)
+exports.searchStudentByAadhar = catchAsyncErrors(async (req, res, next) => {
+  const { aadhar } = req.query;
+
+  try {
+    const student = await Student.findOne({ aadhar: aadhar }); // Find a student by school ID
+
+    if (!student) {
+      // If no student is found
+      return res.status(404).json({
+        success: false,
+        message: "Student not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      student,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: error.message,
+    });
+  }
+});
+
+
+
 
 
 // STUDENT PROGRESSION

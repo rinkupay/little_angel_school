@@ -18,7 +18,7 @@ const Student = () => {
 
   const columns = [
     // { field: "id", headerName: "Student ID", minWidth: 250, flex: 0.5 },
-    { field: "sid", headerName: "Student ID", minWidth: 100, flex: 0.2 },
+    { field: "sid", headerName: "Admission No.", minWidth: 100, flex: 0.2 },
     {
       field: "name",
       headerName: "Student Name",

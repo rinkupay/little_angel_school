@@ -7,6 +7,7 @@ const paymentSchema = new mongoose.Schema({
       type: mongoose.Schema.ObjectId,
       ref: "Student",
     },
+    admissionNo:Number,
     studentName:String,
     std:String,
     rollNo:Number,

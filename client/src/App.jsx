@@ -9,7 +9,7 @@ import ProtectedRoute from "./components/routes/ProtectedRoute";
 import MasterRoute from "./components/routes/MasterRoute";
 import AdminRoute from "./components/routes/AdminRoute";
 import Loader from "./components/loader/Loader";
-import SpeedDialPopUp from "./components/dashboard/speedDialPopUp/SpeedDialPopUp";
+// import SpeedDialPopUp from "./components/dashboard/speedDialPopUp/SpeedDialPopUp";
 import SideBar from "./components/sidebar/SideBar";
 import { LuMenu } from "react-icons/lu";
 import { useLocation } from "react-router-dom";
@@ -173,6 +173,10 @@ const EmailSmsSettings = lazy(() =>
   import("./components/email_sms_settings/EmailSmsSettings")
 );
 
+
+// NOTIFICATION TO WEBSITES
+const Notifications = lazy(()=>import("./components/dashboard/noticeBoard/NoticeBoard"));
+
 const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -233,7 +237,7 @@ const App = () => {
       ) : (
         ""
       )}
-      <div className="speed-dial">{isLoggedIn && <SpeedDialPopUp />}</div>
+      {/* <div className="speed-dial">{isLoggedIn && <SpeedDialPopUp />}</div> */}
       <div className="dashboard-right">
         <Suspense fallback={<Loader />}>
           <Routes>
@@ -694,6 +698,21 @@ const App = () => {
                 </MasterRoute>
               }
             />
+
+
+
+             {/* <<<<<<<<<<<========= WEBSITES NOTIFICATION ROUTES ==============>>>>>>>>>>> */}
+
+               <Route
+              path="/add-notifications"
+              element={
+                <MasterRoute>
+                  <Notifications />
+                </MasterRoute>
+              }
+            />
+
+
           </Routes>
         </Suspense>
       </div>

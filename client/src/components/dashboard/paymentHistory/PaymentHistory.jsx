@@ -88,10 +88,10 @@ const PaymentHistory = () => {
                                 {transaction?.receivedBy?.adminName}
                               </td>
                               <td className="payment-data">
-                                <div className="action-btn-btn">
+                                <div className="action-btn-btn" onClick={() => gotoReceipt(transaction._id)}>
                                   <MdOutlineRemoveRedEye
                                     className="action-view"
-                                    onClick={() => gotoReceipt(transaction._id)}
+                                    
                                     size={22}
                                   />
                                 </div>

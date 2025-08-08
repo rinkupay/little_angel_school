@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "../Dashboard.css";
 import { useLocation } from "react-router-dom";
 import "./RegisterStudent.css";
@@ -8,27 +8,32 @@ import {
   resetState,
 } from "../../../features/registerStudentSlice";
 import { useDispatch, useSelector } from "react-redux";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { fetchFees } from "../../../features/feeSettingSlice";
 
 const RegisterStudent = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const studentData = location.state?.studentData;
 
+  const studentData = location.state?.studentData;
   const { loading } = useSelector((state) => state.students);
   const { student, status } = useSelector((state) => state.registerStudent);
   const { fee } = useSelector((state) => state.feeStructure);
 
   // <<<<========  PERSONAL INFORMATION ==========>>>>>>>>>>
+  const [admissionNo, setAdmissionNo] = useState("");
   const [fullName, setFullName] = useState("");
+  const [aadhar,setAadhar] = useState("")
   const [dob, setDob] = useState("");
-
   const [gender, setGender] = useState("");
   const [motherName, setMotherName] = useState("");
+  const [motherOccupation, setMotherOccupation] = useState("");
   const [fatherName, setFatherName] = useState("");
+  const [fatherOccupation, setFatherOccupation] = useState("");
+  const [familyIncome,setFamilyIncome] = useState("")
   const [gardianName, setGardianName] = useState("");
   const [religion, setReligion] = useState("");
   const [caste, setCaste] = useState("");
@@ -36,18 +41,26 @@ const RegisterStudent = () => {
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
 
+  const handleAdmissionNo = (e) => {
+    setAdmissionNo(e.target.value);
+  };
+
   const handleFullName = (e) => {
     setFullName(e.target.value);
   };
-  const handleDob = (e) => {
-    setDob(e.target.value);
-  };
+
   const handleMotherName = (e) => {
     setMotherName(e.target.value);
   };
+  const handleMotherOccupation = (e)=> {
+    setMotherOccupation(e.target.value)
+  }
   const handleFatherName = (e) => {
     setFatherName(e.target.value);
   };
+  const handleFatherOccupation = (e)=>{
+    setFatherOccupation(e.target.value)
+  }
   const handleGardianName = (e) => {
     setGardianName(e.target.value);
   };
@@ -73,6 +86,13 @@ const RegisterStudent = () => {
   const handleMobile = (e) => {
     setMobile(e.target.value);
   };
+  const handleAadhar = (e)=>{
+    setAadhar(e.target.value)
+  }
+
+  const handleFamilyIncome = (e)=>{
+    setFamilyIncome(e.target.value);
+  }
 
   // <<<<========  Academic Information ==========>>>>>>>>>>
   const [rollNo, setRollNo] = useState("");
@@ -179,11 +199,17 @@ const RegisterStudent = () => {
 
     // Basic validation
     if (
+      !admissionNo ||
+      !aadhar ||
       !fullName ||
+      !aadhar ||
       !dob ||
       !gender ||
       !motherName ||
+      !motherOccupation || 
+      !fatherOccupation ||
       !fatherName ||
+      !familyIncome ||
       !rollNo ||
       !gardianName ||
       !religion ||
@@ -214,9 +240,13 @@ const RegisterStudent = () => {
     const personalInfo = {
       fullName,
       dob,
+      aadhar,
       gender,
       motherName,
+      motherOccupation,
       fatherName,
+      fatherOccupation,
+      familyIncome,
       gardianName,
       religion,
       caste,
@@ -226,9 +256,9 @@ const RegisterStudent = () => {
     };
 
     const academicInfo = {
+      admissionNo,
       rollNo,
       std,
-
       section,
       academicYear,
       admissionFee,
@@ -237,7 +267,6 @@ const RegisterStudent = () => {
       hostelFee,
       monthlyFee,
     };
- 
 
     const formData = new FormData();
     formData.append("image", image);
@@ -288,9 +317,7 @@ const RegisterStudent = () => {
       setFullName(studentData?.studentName || "");
       setFatherName(studentData?.fatherName || "");
       setGender(studentData?.gender || "");
-
       setDob(studentData?.dateOfBirth || "");
-
       setStd(studentData?.className || "");
       setMobile(studentData?.mobile || "");
       setPermanentAddress({ address: studentData?.address || "" });
@@ -313,25 +340,54 @@ const RegisterStudent = () => {
               <form onSubmit={handleRegister}>
                 <div className="form-item">
                   {/* <label htmlFor="">Student Image:</label> */}
-               
-                    <div className="image">
-                      <img
-                        className="profile-image"
-                        src={image ? avatar : profileImage}
-                        alt="profile-image"
-                      />
-                    </div>
 
-                    <input
-                      className="choose-image"
-                      type="file"
-                      name="avatar"
-                      id="studentimage"
-                      onChange={handleChange}
-                      required
+                  <div className="image">
+                    <img
+                      className="profile-image"
+                      src={image ? avatar : profileImage}
+                      alt="profile-image"
                     />
                   </div>
-              
+
+                  <input
+                    className="choose-image"
+                    type="file"
+                    name="avatar"
+                    id="studentimage"
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="admissionNo">Admission No.:</label>
+                  <input
+                    type="number"
+                    name="admissionNo"
+                    value={admissionNo}
+                    id="admissionNo"
+                    placeholder="Admission Number"
+                    onChange={handleAdmissionNo}
+                    required
+                  />
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="admissionNo">Aadhar No.:</label>
+                  <input
+                    type="number"
+                    name="aadharNo"
+                    value={aadhar}
+                    id="aadharNo"
+                    placeholder="Aadhar Number"
+                    onChange={handleAadhar}
+                    maxLength={12}
+                    required
+                  />
+                </div>
+
+
+
                 <div className="form-item">
                   <label htmlFor="fullname">Student Name:</label>
                   <input
@@ -356,6 +412,29 @@ const RegisterStudent = () => {
                     required
                   />
                 </div>
+
+                <div className="form-item">
+                  <label htmlFor="fathersOccupation">
+                    Father's Occupation:
+                  </label>
+                  <select
+                    className="class-item"
+                    name="fathersOccupation"
+                    id="fathersOccupation"
+                    onChange={handleFatherOccupation}
+                  >
+                    <option value="">Select</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Government Employee">
+                      Government Employee
+                    </option>
+                    <option value="Private Job">Private Job</option>
+                    <option value="Business">Business</option>
+                    <option value="Farmer">Farmer</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
                 <div className="form-item">
                   <label htmlFor="mothersname">Mother's Name:</label>
                   <input
@@ -368,6 +447,64 @@ const RegisterStudent = () => {
                     required
                   />
                 </div>
+                <div className="form-item">
+                  <label htmlFor="mothersOccupation">
+                    Mother's Occupation:
+                  </label>
+                  <select
+                    className="class-item"
+                    name="mothersOccupation"
+                    id="mothersOccupation"
+                    onChange={handleMotherOccupation}
+                  >
+                    <option value="">Select</option>
+                    <option value="Homemaker">Homemaker</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Government Employee">
+                      Government Employee
+                    </option>
+                    <option value="Private Job">Private Job</option>
+                    <option value="Business">Business</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+
+
+                {/* <div className="form-item">
+                  <label htmlFor="mothersname">Family Income:</label>
+                  <input
+                    type="number"
+                    name="familyIncome"
+                    id="familyIncome"
+                    value={familyIncome}
+                    placeholder="Annual Family Income"
+                    onChange={handleFamilyIncome}
+                    required
+                  />
+                </div> */}
+
+                <div className="form-item">
+                  <label htmlFor="mothersname">Family Income:</label>
+                  <select
+                    className="class-item"
+                    name="mothersOccupation"
+                    id="mothersOccupation"
+                    onChange={handleFamilyIncome}
+                    value={familyIncome}
+                  >
+                    <option value="">Select</option>
+                    <option value="100000">100000</option>
+                    <option value="More Than 100000">More Than 100000</option>
+                    <option value="Less Than 200000">
+                      Less Than 200000
+                    </option>
+                    <option value="Less Than 500000">Less Than 500000</option>
+                    
+                  </select>
+                </div>
+
+
 
                 <div className="form-item">
                   <label htmlFor="mothersname">Gardian's Name:</label>
@@ -409,7 +546,7 @@ const RegisterStudent = () => {
                 <div className="form-item">
                   <label htmlFor="DOB">Date of Birth:</label>
                   <input
-                    className="date-of-birth"
+                    className="class-item"
                     type="date"
                     name="DOB"
                     id="DOB"
@@ -517,7 +654,6 @@ const RegisterStudent = () => {
                   >
                     <option value="">Select class</option>
                     <option value={`Nursary`}>Nursary</option>
-
                     <option value={`LKG`}>L.K.G</option>
                     <option value={`UKG`}>U.K.G</option>
                     <option value={1}>Class 1</option>

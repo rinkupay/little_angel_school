@@ -7,6 +7,13 @@ const studentSchema = new mongoose.Schema({
         type:String,
         unique:true
     },
+        aadhar:{
+        type: Number,
+    },
+    admissionNo:{
+        type:Number,
+        required:true
+    },
     profileImage:{
         type:String
     },
@@ -77,6 +84,7 @@ const studentSchema = new mongoose.Schema({
         type: String,
         // required: [true, "Enter Student  name"]
     },
+
    
     dob:{
         type:Date,
@@ -89,13 +97,22 @@ const studentSchema = new mongoose.Schema({
         type:String,
         // required: [true, "Enter mother name"],
     },
+    motherOccupation:{
+        type:String,
+    },
     fatherName:{
         type:String,
         // required: [true, "Enter father name"],
     },
+    familyIncome: {
+        type:String,
+    },
     gardianName:{
         type:String,
         // required: [true, "Enter father name"],
+    },
+    fatherOccupation:{
+        type:String,
     },
     religion:{
         type:String
@@ -121,6 +138,9 @@ const studentSchema = new mongoose.Schema({
 
 // Academic Information
   academicInfo:{
+    admissionNo:{
+        type:Number,
+    },
     academicYear:{
         type:String,
     },

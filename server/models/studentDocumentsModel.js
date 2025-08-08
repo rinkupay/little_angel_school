@@ -17,7 +17,22 @@ const studentDocumentsSchema = new mongoose.Schema({
     },
     rc:{
         type:String
-    }
+    },
+     admission:{
+        type:String
+    },
+    admissionReceipt:{
+        type:String
+    },
+     issuedtc:{
+        type:String
+    },
+     issuedcc:{
+        type:String
+    },
+    other:{
+        type:String
+    },
 })
 
 module.exports = mongoose.model('studentDocuments',studentDocumentsSchema);

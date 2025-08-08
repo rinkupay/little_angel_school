@@ -12,7 +12,7 @@ exports.saveStudentFeesForAcademics = async (req, res , next) => {
   const adminName = req.user.userName;
   const { id } = req.params;
 
-  // FETCHE SCHOOL SESSION DETAILS
+  // FETCH SCHOOL SESSION DETAILS
 
   const schoolDetails = await schoolDetailModel.findOne();
 if (!schoolDetails) {
@@ -125,6 +125,7 @@ if (!schoolDetails) {
 
       const newFee = new Payment({
         studentId: id,
+        admissionNo: Number(student.admissionNo),
         studentName,
         std,
         rollNo,

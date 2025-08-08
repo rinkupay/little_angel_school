@@ -17,11 +17,11 @@ form label {
   font-weight: bold;
 }
 
-form input {
+.student-document-form input {
   margin-left: 10px;
 }
 
-form button {
+.student-document-form button {
   padding: 10px 20px;
   background-color: #4CAF50;
   color: white;
@@ -29,7 +29,7 @@ form button {
   cursor: pointer;
 }
 
-form button:disabled {
+.student-document-form button:disabled {
   background-color: gray;
 }
 
@@ -63,8 +63,8 @@ form button:disabled {
   border: 1px solid #c3e6cb;
 }
 
-/* Form Styles */
-form {
+/* .student-document-form Styles */
+.student-document-form {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
@@ -200,7 +200,7 @@ input[type="file"] + .preview-container-d {
 .modal-content {
   position: relative;
   background-color: white;
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 8px;
 }
 
@@ -215,6 +215,17 @@ input[type="file"] + .preview-container-d {
   right: 10px;
   font-size: 20px;
   cursor: pointer;
+  color: black;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #f44336; /* red on hover */
+  color: white;
+ 
 }
 
 

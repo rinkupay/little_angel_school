@@ -21,7 +21,7 @@ const PaymenttReceipt = () => {
   const {schoolDetails} = useSelector((state) => state.schoolDetails);
 
 
-
+console.log(receipt)
 
 
   useEffect(() => {
@@ -74,7 +74,8 @@ if(schoolDetails){
             <div className="receipt-container-1">
               <div className="receipt-left-container">
                 <p>Transaction Id : {receipt?._id}</p>
-                <p>Student Id : {receipt?.studentId}</p>
+                {/* <p>Student Id : {receipt?.studentId}</p> */}
+                <p>Admission No. : {receipt?.admissionNo}</p>
                 <p>Student Name : {receipt?.studentName}</p>
                 <p>Class : {receipt?.std}</p>
                 <p>Roll No. : {receipt?.rollNo}</p>

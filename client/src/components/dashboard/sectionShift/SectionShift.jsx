@@ -131,7 +131,7 @@ await dispatch(updateStudentSection({id,sectionData}))
                 <TableHead>
                   <TableRow>
                   <TableCell>SL No.</TableCell>
-                    <TableCell>Student ID</TableCell>
+                    <TableCell>Admission No.</TableCell>
                     <TableCell>Student Name</TableCell>
                     <TableCell>Father's Name</TableCell>
                     <TableCell>Status</TableCell>
@@ -148,7 +148,7 @@ await dispatch(updateStudentSection({id,sectionData}))
                     data.map((sdata,index) => (
                       <TableRow key={sdata.studentId}>
                           <TableCell>{index + 1}</TableCell>
-                        <TableCell>{sdata.studentId}</TableCell>
+                        <TableCell>{sdata.admissionNo}</TableCell>
                         <TableCell>{sdata.personalInfo.fullName}</TableCell>
                         <TableCell>{sdata.personalInfo.fatherName}</TableCell>
                         {/* <TableCell>{sdata.personalInfo.mobile}</TableCell> */}

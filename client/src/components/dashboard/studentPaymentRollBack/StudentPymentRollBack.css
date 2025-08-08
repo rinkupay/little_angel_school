@@ -1,7 +1,9 @@
 .rollback-ssearchWrapper {
     width: 100%;
     display: flex;
-    margin-top: 5px;
+    margin-top: 0.5px;
+    background-color: #3f8ada;
+    padding: 0.5rem;
   }
   
   .rollback-ssearchItem {
@@ -12,6 +14,7 @@
   }
   
   .rollback-ssearchName {
+    display: flex;
     width: 100%;
     max-width: 20rem;
     height: 30px;

@@ -19,7 +19,7 @@ const ActiveStudents = () => {
   const [isActive, setIsActive] = useState(true);
 
   const columns = [
-    { field: "sid", headerName: "Student ID", minWidth: 100, flex: 0.3 },
+    { field: "sid", headerName: "Admission No.", minWidth: 100, flex: 0.3 },
     {
       field: "name",
       headerName: "Student Name",
@@ -80,7 +80,7 @@ const ActiveStudents = () => {
     students.forEach((student) => {
       rows.push({
         id: student._id,
-        sid: student.studentId,
+        sid: student.admissionNo,
         gender: student.personalInfo.gender,
         std: student.academicInfo.std,
         section: student.academicInfo.section,

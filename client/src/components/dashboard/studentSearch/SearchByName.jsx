@@ -1,24 +1,25 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { IoEye } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import styles from "./SearchByName.module.css"; // Import CSS module
 import "../Dashboard.css";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 const SearchByName = () => {
   const navigate = useNavigate();
+  const [searchType, setSearchType] = useState("name");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchId, setSearchId] = useState("");
+  const [aadhar, setAadhar] = useState("");
   const [students, setStudents] = useState([]);
   const [studentData, setStudentData] = useState(null);
 
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
-  // Handle search by name
   const handleSearch = async () => {
     try {
       if (searchTerm.trim() === "") {
-        setStudents([]); // Clear results if input is empty
+        setStudents([]);
         return;
       }
 
@@ -26,7 +27,7 @@ const SearchByName = () => {
         `${baseUrl}/api/v1/studentByName?name=${searchTerm}`,
         {
           method: "GET",
-          credentials: "include", // Ensures cookies are sent if authentication is required
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -34,23 +35,22 @@ const SearchByName = () => {
       );
 
       const data = await response.json();
- 
 
       if (data.success) {
         setStudents(data.students);
+        setStudentData(null);
       } else {
         setStudents([]);
       }
     } catch (error) {
-      toast.error("Error fetching students:", error);
+      toast.error("Error fetching students by name.");
     }
   };
 
-  // Handle search by ID
   const handleSearchById = async (searchId) => {
     try {
       if (searchId.trim() === "") {
-        setStudentData(null); // Clear results if input is empty
+        setStudentData(null);
         return;
       }
 
@@ -58,7 +58,7 @@ const SearchByName = () => {
         `${baseUrl}/api/v1/studentBySchoolId?schoolId=${searchId}`,
         {
           method: "GET",
-          credentials: "include", // Ensures cookies are sent if authentication is required
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
@@ -69,48 +69,119 @@ const SearchByName = () => {
 
       if (data.success) {
         setStudentData(data.student);
+        setStudents([]);
       } else {
         setStudentData(null);
       }
     } catch (error) {
-      toast.error("Error fetching students:", error);
+      toast.error("Error fetching student by ID.");
     }
   };
 
-  const handleProfile = async (id) => {
+  const handleSearchByAadhar = async (aadharNumber) => {
+    try {
+      if (aadharNumber.trim() === "") {
+        setStudentData(null);
+        return;
+      }
+
+      const response = await fetch(
+        `${baseUrl}/api/v1/studentByAadhar?aadhar=${aadharNumber}`,
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data)
+
+      if (data.success) {
+        setStudentData(data.student);
+        setStudents([]);
+      } else {
+        setStudentData(null);
+      }
+    } catch (error) {
+      toast.error("Error fetching student by Aadhar.");
+    }
+  };
+
+  const handleProfile = (id) => {
     navigate(`/student/${id}`);
   };
 
   return (
-    <div className='dashboard-wrapper'>
-      <div className='dashboard-right'>
-        <h2 className='dashboard-heading'>SEARCH STUDENT</h2>
+    <div className="dashboard-wrapper">
+      <div className="dashboard-right">
+        <h2 className="dashboard-heading">SEARCH STUDENT</h2>
+
         <div className={styles.ssearchWrapper}>
           <div className={styles.ssearchItem}>
-            <input
-              type="text"
+            <select
               className={styles.ssearchName}
-              placeholder="Search by name"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button className={styles.ssearchBtn} onClick={handleSearch}>
-              Search
-            </button>
-          </div>
-          <div className={styles.ssearchItem}>
-            <input
-              type="text"
-              className={styles.ssearchName}
-              placeholder="Search by ID"
-              onChange={(e) => setSearchId(e.target.value)}
-            />
-            <button
-              className={styles.ssearchBtn}
-              onClick={() => handleSearchById(searchId)}
+              value={searchType}
+              onChange={(e) => setSearchType(e.target.value)}
             >
-              Search
-            </button>
+              <option value="name">Search by Name</option>
+              <option value="id">Search by Admission No.</option>
+              <option value="aadhar">Search by Aadhar</option>
+            </select>
           </div>
+
+          {searchType === "name" && (
+            <div className={styles.ssearchItem}>
+              <input
+                type="text"
+                className={styles.ssearchName}
+                placeholder="Enter student name"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button className={styles.ssearchBtn} onClick={handleSearch}>
+                Search
+              </button>
+            </div>
+          )}
+
+          {searchType === "id" && (
+            <div className={styles.ssearchItem}>
+              <input
+                type="text"
+                className={styles.ssearchName}
+                placeholder="Enter student ID"
+                value={searchId}
+                onChange={(e) => setSearchId(e.target.value)}
+              />
+              <button
+                className={styles.ssearchBtn}
+                onClick={() => handleSearchById(searchId)}
+              >
+                Search
+              </button>
+            </div>
+          )}
+
+          {searchType === "aadhar" && (
+            <div className={styles.ssearchItem}>
+              <input
+                type="text"
+                className={styles.ssearchName}
+                placeholder="Enter Aadhar Number"
+                value={aadhar}
+                onChange={(e) => setAadhar(e.target.value)}
+              />
+              <button
+                className={styles.ssearchBtn}
+                onClick={() => handleSearchByAadhar(aadhar)}
+              >
+                Search
+              </button>
+            </div>
+          )}
         </div>
 
         <div className={styles.sstudentTable}>
@@ -118,7 +189,7 @@ const SearchByName = () => {
             <thead>
               <tr>
                 <th>Sl No.</th>
-                <th>Student ID</th>
+                <th>Admission No.</th>
                 <th>Name</th>
                 <th>Father Name</th>
                 <th>Roll No</th>
@@ -127,12 +198,13 @@ const SearchByName = () => {
                 <th>Action</th>
               </tr>
             </thead>
+
             {students && students.length > 0 && (
               <tbody>
                 {students.map((student, index) => (
                   <tr className={styles.sstudentRow} key={student._id}>
                     <td className={styles.sstudentData}>{index + 1}</td>
-                    <td className={styles.sstudentData}>{student.studentId}</td>
+                    <td className={styles.sstudentData}>{student.admissionNo}</td>
                     <td className={styles.sstudentData}>
                       {student.personalInfo.fullName}
                     </td>
@@ -162,24 +234,24 @@ const SearchByName = () => {
             {studentData && (
               <tbody>
                 <tr className={styles.sstudentRow}>
-                  <td className={styles.sstudentData}>{1}</td>
-                    <td className={styles.sstudentData}>
-                    {studentData?.studentId}
+                  <td className={styles.sstudentData}>1</td>
+                  <td className={styles.sstudentData}>
+                    {studentData.admissionNo}
                   </td>
                   <td className={styles.sstudentData}>
-                    {studentData?.personalInfo?.fullName}
+                    {studentData.personalInfo?.fullName}
                   </td>
                   <td className={styles.sstudentData}>
-                    {studentData?.personalInfo?.fatherName}
+                    {studentData.personalInfo?.fatherName}
                   </td>
                   <td className={styles.sstudentData}>
-                    {studentData?.academicInfo?.rollNo}
+                    {studentData.academicInfo?.rollNo}
                   </td>
                   <td className={styles.sstudentData}>
-                    {studentData?.academicInfo?.std}
+                    {studentData.academicInfo?.std}
                   </td>
                   <td className={styles.sstudentData}>
-                    {studentData?.academicInfo?.section}
+                    {studentData.academicInfo?.section}
                   </td>
                   <td
                     className={styles.sstudentData}
