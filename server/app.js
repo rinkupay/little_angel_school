@@ -8,6 +8,8 @@ const path = require("path");
 
 // Serve static files from the 'images' directory
 app.use('/images', express.static(path.join(__dirname, 'images')));
+// Static file serving web images
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Use of Cors
 app.use(cors({
@@ -44,6 +46,10 @@ const smsEmailSettings = require("./routes/emailSmsSettingsRoutes");
 const schoolDetail = require("./routes/schoolDetailRoutes");
 const subscription = require("./routes/subscriptionRoutes");
 
+// WEB ROUTES
+const webRoutes = require("./routes/webRoutes");
+const webImage = require("./routes/imageRoute");
+
 app.use("/api/v1",user);
 app.use("/api/v1",student);
 app.use("/api/v1",studentEnquiry);
@@ -54,6 +60,8 @@ app.use("/api/v1",feeSttings);
 app.use("/api/v1",smsEmailSettings);
 app.use("/api/v1",schoolDetail);
 app.use("/api/v1",subscription);
+app.use("/api/v1",webRoutes);
+app.use("/api/v1",webImage);
 
 
 

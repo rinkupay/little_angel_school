@@ -9,7 +9,11 @@ import { logoutAdmin, logout } from "../../features/userSlice";
 import { IoStatsChart } from "react-icons/io5";
 import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
 import { TreeItem } from "@mui/x-tree-view/TreeItem";
-import { TbTransactionRupee, TbSettingsDollar, TbHomeCog } from "react-icons/tb";
+import {
+  TbTransactionRupee,
+  TbSettingsDollar,
+  TbHomeCog,
+} from "react-icons/tb";
 import { FaChalkboardTeacher, FaPeopleArrows } from "react-icons/fa";
 import { PiChalkboardTeacherThin } from "react-icons/pi";
 import { HiInformationCircle } from "react-icons/hi";
@@ -118,12 +122,17 @@ const SideBar = ({ setIsMenu }) => {
     setIsMenu(false);
   };
 
-
   // Notifications
-  const goToAddNotifications = ()=>{
+  const goToAddNotifications = () => {
     navigate("/add-notifications");
     setIsMenu(false);
-  }
+  };
+
+  // Images Gallery
+  const goToImagesGallery = () => {
+    navigate("/web-images");
+    setIsMenu(false);
+  };
 
   return (
     <Fragment>
@@ -134,7 +143,7 @@ const SideBar = ({ setIsMenu }) => {
         </div>
 
         <div className="sidebar-menues">
-          <span className="menu-title module">Statistics</span>
+          {/* <span className="menu-title module">Statistics</span> */}
           <div className="sidebar-menu" onClick={handleStatics}>
             <IoStatsChart size={20} />
             <span className="menu-title">Statistics</span>
@@ -241,31 +250,34 @@ const SideBar = ({ setIsMenu }) => {
             </>
           )}
 
+          {/* WEBSITE NOTIFICATION  */}
 
-{/* WEBSITE NOTIFICATION  */}
+          {data.role === "super" && (
+            <Fragment>
+              <span className="menu-title module">Web Module</span>
+              <SimpleTreeView sx={{ fontSize: "6.2rem" }}>
+                <TreeItem
+                  itemId="grid"
+                  label="Website"
+                  sx={{ fontSize: "1.2rem", color: "white", margin: "12px" }}
+                >
+                  <TreeItem
+                    itemId="grid-notify"
+                    label="Add Notice"
+                    onClick={goToAddNotifications}
+                    sx={{ fontSize: "1.2rem", color: "white", margin: "10px" }}
+                  />
 
-{data.role === "super" && (<Fragment>
-<span className="menu-title module">Web Notifications</span>
- <SimpleTreeView sx={{ fontSize: "6.2rem" }}>
-            <TreeItem
-              itemId="grid"
-              label="Notice"
-              sx={{ fontSize: "1.2rem", color: "white", margin: "12px" }}
-            >
-              <TreeItem
-                itemId="grid-notify"
-                label="Notificatons"
-                onClick={goToAddNotifications}
-                sx={{ fontSize: "1.2rem", color: "white", margin: "10px" }}
-              />
-              
-            </TreeItem>
-          </SimpleTreeView>
-
-</Fragment>)}
-
-
-
+                  <TreeItem
+                    itemId="grid-images"
+                    label="Add Images"
+                    onClick={goToImagesGallery}
+                    sx={{ fontSize: "1.2rem", color: "white", margin: "10px" }}
+                  />
+                </TreeItem>
+              </SimpleTreeView>
+            </Fragment>
+          )}
 
           {data.role === "super" && (
             <Fragment>

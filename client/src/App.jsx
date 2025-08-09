@@ -176,6 +176,7 @@ const EmailSmsSettings = lazy(() =>
 
 // NOTIFICATION TO WEBSITES
 const Notifications = lazy(()=>import("./components/dashboard/noticeBoard/NoticeBoard"));
+const WebImagesGallery = lazy(()=>import("./components/dashboard/imageGallery/WebImagesGallery"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -708,6 +709,15 @@ const App = () => {
               element={
                 <MasterRoute>
                   <Notifications />
+                </MasterRoute>
+              }
+            />
+
+            <Route
+              path="/web-images"
+              element={
+                <MasterRoute>
+                  <WebImagesGallery />
                 </MasterRoute>
               }
             />

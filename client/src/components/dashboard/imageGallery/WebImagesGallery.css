@@ -1,0 +1,455 @@
+.upload-section {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 24px;
+}
+.category-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #1C82DE;
+  color: white;
+  font-size: larger;
+  border-radius: 5px;
+}
+.category-styl{
+  padding: 0.4rem ;
+  outline: none;
+  
+}
+.category-opt{
+  font-size: larger;
+  font-family: sans-serif;
+}
+.upload-btn-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.choose-file-btn{
+  background-color: #73c4d3;
+  padding: 0.4rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.choose-file-btn:hover{
+  background-color: #5cbdce;
+}
+.file-input {
+  display: none;
+  margin-bottom: 12px;
+}
+
+.upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 18px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.upload-btn:hover {
+  background: #0056b3;
+}
+
+/* Horizontal scroll preview for selected files */
+.selected-preview-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+.selected-preview-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.selected-preview-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.selected-image-card {
+  position: relative;
+  min-width: 120px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.selected-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.remove-selected-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.remove-selected-btn:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+/* Uploaded images grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.image-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.gallery-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+.gallery-image:hover {
+  transform: scale(1.05);
+}
+.delete-btn-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 6px 10px;
+  background: rgba(255,0,0,0.8);
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.delete-btn-btn:hover {
+  background: rgba(200,0,0,0.9);
+}
+
+.no-images {
+  text-align: center;
+  color: #777;
+}
+
+/* Preview modal */
+.preview-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+.preview-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+.preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.close-btn:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+/* Delete confirmation modal */
+.confirm-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+.confirm-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+}
+.confirm-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.cancel-btn, .confirm-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.cancel-btn {
+  background: #ccc;
+}
+.confirm-btn {
+  background: #dc3545;
+  color: white;
+}
+.confirm-btn:hover {
+  background: #b02a37;
+}
+
+/* Hide the native file input */
+.file-input {
+  display: none;
+}
+
+.choose-file-btn {
+  background: linear-gradient(135deg, #4cafef, #2196f3);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  margin-right: 10px;
+  transition: background 0.3s ease;
+}
+.choose-file-btn:hover {
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+}
+
+.upload-progress-container {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.upload-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4cafef, #2196f3);
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.upload-progress-text {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.selected-preview-scroll {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.selected-image-card {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.selected-image {
+  height: 80px;
+  width: auto;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.remove-selected-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.category-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  text-transform: capitalize;
+}
+
+.image-card:hover .category-overlay {
+  opacity: 1;
+}
+
+/* Show delete button only on hover */
+.delete-btn-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 0, 0, 0.8);
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-card:hover .delete-btn-btn {
+  opacity: 1;
+}
+
+.delete-btn-btn:hover {
+  background: rgba(200, 0, 0, 0.9);
+}
+
+/* Category overlay hover (already in your code) */
+.category-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  text-transform: capitalize;
+}
+
+.image-card:hover .category-overlay {
+  opacity: 1;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .upload-section {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  .category-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: medium;
+    padding: 8px;
+  }
+
+  .category-styl {
+    padding: 0.3rem;
+    font-size: 1rem;
+  }
+
+  .category-opt {
+    font-size: medium;
+  }
+
+  .upload-btn-btn {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .choose-file-btn,
+  .upload-btn {
+    padding: 8px 14px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .selected-preview-scroll {
+    padding: 8px 0;
+    gap: 8px;
+  }
+
+  .selected-image-card {
+    min-width: 90px;
+    height: 80px;
+  }
+
+  .selected-image {
+    height: 70px;
+    width: auto;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .gallery-image {
+    height: 110px;
+  }
+
+  /* Modals */
+  .preview-content {
+    max-width: 95%;
+    max-height: 80%;
+    padding: 0 10px;
+  }
+
+  .confirm-content {
+    width: 90%;
+    max-width: 280px;
+    padding: 16px;
+  }
+
+  .confirm-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cancel-btn,
+  .confirm-btn {
+    width: 100%;
+  }
+}
