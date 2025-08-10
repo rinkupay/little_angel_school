@@ -284,7 +284,8 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <AdminRoute>
-                    <Students />
+                    {/* <Students /> */}
+                    <ActiveStudents />
                   </AdminRoute>
                 </ProtectedRoute>
               }

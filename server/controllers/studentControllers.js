@@ -86,7 +86,7 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
 
 
 
-// HAndle Upload documents
+//<<<<<<<<<<<============== HANDLE DOCUMENTS UPLOAD  =====================>>>>>>>>>>>>>>>>>>>>
 
 
 const deleteOldFiles = (oldFiles) => {
@@ -138,6 +138,8 @@ const handleDocumentUpload = async (id, documents, existingDocument) => {
   await Document.create(documentData);
   return { message: "Student documents uploaded successfully!" };
 };
+
+
 
 exports.uploadStudentDocuments = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
@@ -210,10 +212,7 @@ exports.updateStudentSection = catchAsyncErrors(async(req,res)=>{
 
   const {id} = req.params;
   const {section} =req.body;
-
-
-
-
+  
   const student = await Student.findByIdAndUpdate(id,{"academicInfo.section":section},{new:true})
   if(!student){
     return res.status(200).json({

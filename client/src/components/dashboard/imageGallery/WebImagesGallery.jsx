@@ -146,7 +146,7 @@ const confirmDelete = async () => {
 
               {/* Category Dropdown */}
               <div className="category-container">
-                <label className="category-styl" htmlFor="category">
+                <label className="category-styl label" htmlFor="category">
                   Category
                 </label>
                 <select

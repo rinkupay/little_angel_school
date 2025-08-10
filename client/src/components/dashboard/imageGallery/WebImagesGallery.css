@@ -11,14 +11,17 @@
   align-items: center;
   gap: 1rem;
   background-color: #1C82DE;
-  color: white;
+  color: black;
   font-size: larger;
   border-radius: 5px;
 }
 .category-styl{
   padding: 0.4rem ;
   outline: none;
-  
+ 
+}
+.category-styl.label{
+  color: white;
 }
 .category-opt{
   font-size: larger;

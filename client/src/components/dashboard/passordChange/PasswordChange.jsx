@@ -110,7 +110,7 @@ const PasswordChange = () => {
         <div className="password-wrapper">
           <div className="password-container">
             <div className="password-menu">
-              <label htmlFor="oldPassword">Old Password</label>
+              <label htmlFor="oldPassword">Current Password</label>
               <div className="password-input">
                 <input
                   type={`${showOldPassword ? "text" : "password"}`}
