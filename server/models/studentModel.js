@@ -131,6 +131,46 @@ const studentSchema = new mongoose.Schema({
     mobile:{
         type:Number
     }
+    ,motherTounge:{
+        type:String
+    },
+    nationality:{
+        type:String
+    },
+    schoolLastAttended:{
+        type:String,
+    },
+    responsibleForFeePayment:{
+        type:String,    
+    },
+    disease:{
+        type:String,
+    },
+    responsibleForWard:{
+        type:String,
+
+    },
+    responsibleForWardRelation:{
+        type:String,
+    },
+    isHostel:{
+        type:Boolean,   
+    default:false,
+
+    },isBusOpted:{
+        type:Boolean,
+        default:false,  
+    },
+    tcSubmitted:{   
+        type:Boolean,
+        default:false,
+    },
+    dobcSubmitted:{
+        type:Boolean,
+        default:false,
+    },
+    // Additional fields can be added here as needed
+
   },
 
 

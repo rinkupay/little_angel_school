@@ -12,6 +12,7 @@ const SchoolDetails = () => {
   const dispatch = useDispatch();
 
   const { schoolDetails } = useSelector((state) => state.schoolDetails);
+  
 
   const [schoolName, setSchoolName] = useState("");
   const [address, setAddress] = useState("");

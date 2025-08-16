@@ -26,6 +26,8 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
 
     profileImage: image,
 
+
+// Personal Information
     personalInfo: {
       fullName: personalInfo.fullName,
       familyIncome: personalInfo.familyIncome,
@@ -41,7 +43,21 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
       bloodGroup: personalInfo.bloodGroup,
       email: personalInfo.email,
       mobile: personalInfo.mobile,
+      motherTounge: personalInfo.motherTounge,
+      nationality: personalInfo.nationality,
+      schoolLastAttended: personalInfo.schoolLastAttended,
+      responsibleForFeePayment: personalInfo.responsibleForFeePayment,
+      disease: personalInfo.disease,
+      responsibleForWard: personalInfo.responsibleForWard,
+      responsibleForWardRelation: personalInfo.responsibleForWardRelation,
+      isHostel: personalInfo.isHostel,
+      isBusOpted: personalInfo.isBusOpted,
+      tcSubmitted: personalInfo.tcSubmitted,
+      dobcSubmitted: personalInfo.dobcSubmitted,
+    
     },
+
+    // Academic Information
     academicInfo: {
       admissionNo : Number(academicInfo.admissionNo),
       academicYear: academicInfo.academicYear,
@@ -55,6 +71,7 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
       monthlyFee: academicInfo.monthlyFee,
     },
 
+    // Address Information
     permanentAddress: {
       address: permanentAddress.address,
       city: permanentAddress.city,
@@ -63,6 +80,7 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
       phone: permanentAddress.phone,
     },
 
+    // Temporary Address
     correspondenceAddress: {
       address: temporaryAddress.address,
       city: temporaryAddress.city,

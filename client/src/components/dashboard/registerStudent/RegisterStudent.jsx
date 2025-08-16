@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../Dashboard.css";
 import { useLocation } from "react-router-dom";
 import "./RegisterStudent.css";
@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { fetchFees } from "../../../features/feeSettingSlice";
 
 const RegisterStudent = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,14 +25,26 @@ const RegisterStudent = () => {
   // <<<<========  PERSONAL INFORMATION ==========>>>>>>>>>>
   const [admissionNo, setAdmissionNo] = useState("");
   const [fullName, setFullName] = useState("");
-  const [aadhar,setAadhar] = useState("")
+  const [aadhar, setAadhar] = useState("");
+  const [motherTounge, setMotherTounge] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [schoolLastAttended, setSchoolLastAttended] = useState("");
+  const [responsibleForFeePayment, setResponsibleForFeePayment] = useState("");
+  const [disease, setDisease] = useState("");
+  const [responsibleForWard, setResponsibleForWard] = useState("");
+  const [responsibleForWardRelation, setResponsibleForWardRelation] =
+    useState("");
+  const [isBusOpted, setIsBusOpted] = useState(false);
+  const [isHostel, setIsHostel] = useState(false);
+  const [tcSubmitted, setTcSubmitted] = useState(false);
+  const [dobcSubmitted, setDobcSubmitted] = useState(false);
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [motherName, setMotherName] = useState("");
   const [motherOccupation, setMotherOccupation] = useState("");
   const [fatherName, setFatherName] = useState("");
   const [fatherOccupation, setFatherOccupation] = useState("");
-  const [familyIncome,setFamilyIncome] = useState("")
+  const [familyIncome, setFamilyIncome] = useState("");
   const [gardianName, setGardianName] = useState("");
   const [religion, setReligion] = useState("");
   const [caste, setCaste] = useState("");
@@ -52,15 +63,15 @@ const RegisterStudent = () => {
   const handleMotherName = (e) => {
     setMotherName(e.target.value);
   };
-  const handleMotherOccupation = (e)=> {
-    setMotherOccupation(e.target.value)
-  }
+  const handleMotherOccupation = (e) => {
+    setMotherOccupation(e.target.value);
+  };
   const handleFatherName = (e) => {
     setFatherName(e.target.value);
   };
-  const handleFatherOccupation = (e)=>{
-    setFatherOccupation(e.target.value)
-  }
+  const handleFatherOccupation = (e) => {
+    setFatherOccupation(e.target.value);
+  };
   const handleGardianName = (e) => {
     setGardianName(e.target.value);
   };
@@ -86,13 +97,49 @@ const RegisterStudent = () => {
   const handleMobile = (e) => {
     setMobile(e.target.value);
   };
-  const handleAadhar = (e)=>{
-    setAadhar(e.target.value)
-  }
+  const handleAadhar = (e) => {
+    setAadhar(e.target.value);
+  };
 
-  const handleFamilyIncome = (e)=>{
+  const handleFamilyIncome = (e) => {
     setFamilyIncome(e.target.value);
-  }
+  };
+
+  const handleMotherTounge = (e) => {
+    setMotherTounge(e.target.value);
+  };
+
+  const handleNationality = (e) => {
+    setNationality(e.target.value);
+  };
+
+  const handleNameOfSchoolLastAttended = (e) => {
+    setSchoolLastAttended(e.target.value);
+  };
+
+  const handleResponsibleForFeePayment = (e) => {
+    setResponsibleForFeePayment(e.target.value);
+  };
+  const handleDisease = (e) => {
+    setDisease(e.target.value);
+  };
+  const handleResponsibleForWard = (e) => {
+    setResponsibleForWard(e.target.value);
+  };
+  const handleRelationshipToWard = (e) => {
+    setResponsibleForWardRelation(e.target.value);
+  };
+
+  const handleDoYouWantToStayInHostel = (e) => {
+    setIsHostel(e.target.value);
+  };
+
+  const handleTcSubmitted = (e) => {
+    setTcSubmitted(e.target.value);
+  };
+  const handleDobcSubmitted = (e) => {
+    setDobcSubmitted(e.target.value);
+  };
 
   // <<<<========  Academic Information ==========>>>>>>>>>>
   const [rollNo, setRollNo] = useState("");
@@ -125,6 +172,9 @@ const RegisterStudent = () => {
   };
   const handleHostelFee = (e) => {
     setHostelFee(e.target.value);
+  };
+  const handleBusOpted = (e) => {
+    setIsBusOpted(e.target.value);
   };
 
   // IMAGE SECTION
@@ -206,7 +256,7 @@ const RegisterStudent = () => {
       !dob ||
       !gender ||
       !motherName ||
-      !motherOccupation || 
+      !motherOccupation ||
       !fatherOccupation ||
       !fatherName ||
       !familyIncome ||
@@ -215,7 +265,20 @@ const RegisterStudent = () => {
       !religion ||
       !bloodGroup ||
       !email ||
-      !mobile
+      !mobile ||
+      !std ||
+      !section ||
+      !schoolLastAttended ||
+      !responsibleForFeePayment ||
+      !disease ||
+      !responsibleForWard ||
+      !responsibleForWardRelation ||
+      !isHostel ||
+      !isBusOpted ||
+      !tcSubmitted ||
+      !dobcSubmitted ||
+      !motherTounge ||
+      !nationality
     ) {
       toast.error("Please fill out all required fields.");
       return;
@@ -253,7 +316,20 @@ const RegisterStudent = () => {
       bloodGroup,
       email,
       mobile,
+      nationality,
+      motherTounge,
+      schoolLastAttended,
+      responsibleForFeePayment,
+      disease,
+      responsibleForWard,
+      responsibleForWardRelation,
+      isHostel,
+      tcSubmitted,
+      dobcSubmitted,
+      isBusOpted,
     };
+
+    console.log("Personal Info:", personalInfo);
 
     const academicInfo = {
       admissionNo,
@@ -338,16 +414,26 @@ const RegisterStudent = () => {
             <h2>Student Registration Form</h2>
             <div className="form-wrapper">
               <form onSubmit={handleRegister}>
+
+
                 <div className="form-item">
                   {/* <label htmlFor="">Student Image:</label> */}
 
-                  <div className="image">
+                  <div className="form-item-2">
+                    <div className="image">
                     <img
                       className="profile-image"
                       src={image ? avatar : profileImage}
                       alt="profile-image"
                     />
                   </div>
+
+                  <label
+                    htmlFor="studentimage"
+                    className="select-profile-image"
+                  >
+                    Choose
+                  </label>
 
                   <input
                     className="choose-image"
@@ -356,7 +442,9 @@ const RegisterStudent = () => {
                     id="studentimage"
                     onChange={handleChange}
                     required
+                    style={{ display: "none" }}
                   />
+                  </div>
                 </div>
 
                 <div className="form-item">
@@ -373,7 +461,7 @@ const RegisterStudent = () => {
                 </div>
 
                 <div className="form-item">
-                  <label htmlFor="admissionNo">Aadhar No.:</label>
+                  <label htmlFor="aadharNo">Aadhar No.:</label>
                   <input
                     type="number"
                     name="aadharNo"
@@ -385,8 +473,6 @@ const RegisterStudent = () => {
                     required
                   />
                 </div>
-
-
 
                 <div className="form-item">
                   <label htmlFor="fullname">Student Name:</label>
@@ -469,8 +555,6 @@ const RegisterStudent = () => {
                   </select>
                 </div>
 
-
-
                 {/* <div className="form-item">
                   <label htmlFor="mothersname">Family Income:</label>
                   <input
@@ -496,15 +580,10 @@ const RegisterStudent = () => {
                     <option value="">Select</option>
                     <option value="100000">100000</option>
                     <option value="More Than 100000">More Than 100000</option>
-                    <option value="Less Than 200000">
-                      Less Than 200000
-                    </option>
+                    <option value="Less Than 200000">Less Than 200000</option>
                     <option value="Less Than 500000">Less Than 500000</option>
-                    
                   </select>
                 </div>
-
-
 
                 <div className="form-item">
                   <label htmlFor="mothersname">Gardian's Name:</label>
@@ -637,6 +716,186 @@ const RegisterStudent = () => {
                     maxLength={10}
                     required
                   />
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="motherTounge">Mother Tongue:</label>
+                  <select
+                    name="motherTounge"
+                    id="motherTounge"
+                    className="class-item"
+                    value={motherTounge}
+                    onChange={handleMotherTounge}
+                    required
+                  >
+                    <option value="">Select Mother Tongue</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Santali">Santali</option>
+                    <option value="English">English</option>
+                    <option value="Kannada">Kannada</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Marathi">Marathi</option>
+                    <option value="Bengali">Bengali</option>
+                    <option value="Gujarati">Gujarati</option>
+                    <option value="Punjabi">Punjabi</option>
+                    <option value="Malayalam">Malayalam</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="mothersname">Nationality:</label>
+                  <select
+                    name="nationality"
+                    id="nationality"
+                    className="class-item"
+                    value={nationality}
+                    onChange={handleNationality}
+                    required
+                  >
+                    <option value="">Nationality</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="schoolLastAttended">
+                    Name of school last attended:
+                  </label>
+                  <input
+                    type="text"
+                    name="schoolLastAttended"
+                    id="schoolLastAttended"
+                    value={schoolLastAttended}
+                    placeholder="Enter Name of school last attended"
+                    onChange={handleNameOfSchoolLastAttended}
+                    required
+                  />
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="responsibleForFeePayment">
+                    Name of the person responsible for fee payment:
+                  </label>
+                  <input
+                    type="text"
+                    name="responsibleForFeePayment"
+                    id="responsibleForFeePayment"
+                    value={responsibleForFeePayment}
+                    placeholder="Responsible for fee payment"
+                    onChange={handleResponsibleForFeePayment}
+                    required
+                  />
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="disease">Allergies/Disease:</label>
+                  <input
+                    type="text"
+                    name="disease"
+                    id="disease"
+                    value={disease}
+                    placeholder="Enter any allergies or disease"
+                    onChange={handleDisease}
+                    required
+                  />
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="responsibleForWard">
+                    Responsible for taking the ward/ student home everyday:
+                  </label>
+                  <input
+                    type="text"
+                    name="responsibleForWard"
+                    id="responsibleForWard"
+                    value={responsibleForWard}
+                    placeholder="Enter the name of the person responsible for taking the ward home"
+                    onChange={handleResponsibleForWard}
+                  />
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="responsibleForWardRelation">Relation:</label>
+                  <input
+                    type="text"
+                    name="responsibleForWardRelation"
+                    id="responsibleForWardRelation"
+                    value={responsibleForWardRelation}
+                    placeholder="Enter the relation of the person responsible for taking the ward home"
+                    onChange={handleRelationshipToWard}
+                  />
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="isHostel">
+                    Do you want to stay in the Hostel ?
+                  </label>
+                  <select
+                    className="class-item"
+                    name="isHostel"
+                    id="isHostel"
+                    value={isHostel}
+                    onChange={handleDoYouWantToStayInHostel}
+                    required
+                  >
+                    <option value={false}>Select</option>
+                    <option value={true}>Yes</option>
+                    <option value={false}>No</option>
+                  </select>
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="isBusOpted">
+                    Do you want to opt for Bus services ?
+                  </label>
+                  <select
+                    className="class-item"
+                    name="isBusOpted"
+                    id="isBusOpted"
+                    value={isBusOpted}
+                    onChange={handleBusOpted}
+                    required
+                  >
+                    <option value={false}>Select</option>
+                    <option value={true}>Yes</option>
+                    <option value={false}>No</option>
+                  </select>
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="tcSubmitted">TC Submitted ?</label>
+                  <select
+                    className="class-item"
+                    name="tcSubmitted"
+                    id="tcSubmitted"
+                    value={tcSubmitted}
+                    onChange={handleTcSubmitted}
+                    required
+                  >
+                    <option value={false}>Select</option>
+                    <option value={true}>Yes</option>
+                    <option value={false}>No</option>
+                  </select>
+                </div>
+
+                <div className="form-item">
+                  <label htmlFor="dobcSubmitted">
+                    Date of birth certificate Submitted ?
+                  </label>
+                  <select
+                    className="class-item"
+                    name="dobcSubmitted"
+                    id="dobcSubmitted"
+                    value={dobcSubmitted}
+                    onChange={handleDobcSubmitted}
+                  >
+                    <option value={false}>Select</option>
+                    <option value={true}>Yes</option>
+                    <option value={false}>No</option>
+                  </select>
                 </div>
 
                 {/* ACADEMIC INFORMATION */}

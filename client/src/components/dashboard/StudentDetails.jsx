@@ -17,6 +17,7 @@ const StudentDetails = () => {
 
   const { student,loading } = useSelector((state) => state.studentDetails);
   const data = student?.student;
+  
 
 
 

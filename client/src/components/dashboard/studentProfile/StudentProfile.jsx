@@ -7,58 +7,50 @@ import Loader from "../../loader/Loader";
 import { useNavigate } from "react-router-dom";
 import SmsEmailToggle from "../../smsEmailToggle/SmsEmailToggle";
 import ConfirmDialog from "../../confirmDialog/ConfirmDialog";
-import {generateFeesMemo} from "../../../features/singleStudentDueTransactionSlice"
+import { generateFeesMemo } from "../../../features/singleStudentDueTransactionSlice";
 import { useDispatch } from "react-redux";
 
 const StudentProfile = ({ data, loading }) => {
   const dispatch = useDispatch();
 
-
   const imageUrl = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
 
-  // STATE 
+  // STATE
 
-    const [openDialog, setOpenDialog] = useState(false);
-
+  const [openDialog, setOpenDialog] = useState(false);
 
   // REDIRECT TO PAYMENT PAGE
-const handlePayment = ()=>{
-   navigate(`/payment-admission/${data._id}`) 
-}
+  const handlePayment = () => {
+    navigate(`/payment-admission/${data._id}`);
+  };
 
-// HANDLE STUDENT ACTIVATION
-const handleActive = (id)=> {
-  console.log(id)
+  // HANDLE STUDENT ACTIVATION
+  const handleActive = (id) => {
+    console.log(id);
+  };
 
-}
+  // HANDLE CONFIRMATION
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
 
-// HANDLE CONFIRMATION
-const handleOpenDialog = () => {
-  setOpenDialog(true);
-}
- const handleCloseDialog = () => {
-  setOpenDialog(false);
- }
+  const handleConfirm = (id) => {
+    handleGenerateFeeMemo(id);
 
- const handleConfirm = (id)=> {
+    setOpenDialog(false);
+  };
 
-handleGenerateFeeMemo(id)
-
-  setOpenDialog(false)
-
- }
-
-
-   // HANDLE GENERATE FEE MEMO
+  // HANDLE GENERATE FEE MEMO
   const handleGenerateFeeMemo = (id) => {
-    dispatch(generateFeesMemo({id})).then(() => {
+    dispatch(generateFeesMemo({ id })).then(() => {
       // dispatch(fetchSingleStudentDueTransaction(id));
       window.location.reload();
-    })
-  }
-
-
+    });
+  };
 
   return (
     <Fragment>
@@ -69,20 +61,14 @@ handleGenerateFeeMemo(id)
           {data && (
             <Fragment>
               <div className="profile-wrapper">
-
-
                 {/* Confirm Dialog */}
-                      <ConfirmDialog
-                        open={openDialog}
-                        onClose={handleCloseDialog}
-                        onConfirm={()=>handleConfirm(data._id)}
-                        message={"Are you sure want to activate?"}
-                        actionMessage={"Activate"}
-                      />
-
-
-
-
+                <ConfirmDialog
+                  open={openDialog}
+                  onClose={handleCloseDialog}
+                  onConfirm={() => handleConfirm(data._id)}
+                  message={"Are you sure want to activate?"}
+                  actionMessage={"Activate"}
+                />
 
                 <div className="profile-container">
                   <div className="left-profile-container">
@@ -90,7 +76,11 @@ handleGenerateFeeMemo(id)
                       <div className="student-image-name">
                         <div className="student-image-name-2">
                           <div className="student-active-icon">
-                            {data.isActive ? <FcApproval size={26} /> : <FcHighPriority size={26} />}
+                            {data.isActive ? (
+                              <FcApproval size={26} />
+                            ) : (
+                              <FcHighPriority size={26} />
+                            )}
                           </div>
                           <img
                             className="student-profile-picture"
@@ -120,7 +110,16 @@ handleGenerateFeeMemo(id)
                           </h3>
                         </div>
                       </div>
-                     {data.isActive ? '' :  <button onClick={handleOpenDialog} className="admission-complete" >Complete Admission process</button>}
+                      {data.isActive ? (
+                        ""
+                      ) : (
+                        <button
+                          onClick={handleOpenDialog}
+                          className="admission-complete"
+                        >
+                          Complete Admission process
+                        </button>
+                      )}
                     </div>
                   </div>
                   <div className="right-profile-container">
@@ -130,9 +129,7 @@ handleGenerateFeeMemo(id)
 
                         {/* SWITCH FOR SMS AND EMAIL */}
                         <div className="toggle-btn-group">
-
                           <SmsEmailToggle />
-                          
                         </div>
                       </div>
 
@@ -192,6 +189,94 @@ handleGenerateFeeMemo(id)
                                 {data?.personalInfo?.email}
                               </td>
                             </tr>
+
+                            <tr>
+                              <td className="first-box">Nationality</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.nationality}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="first-box">Mother Tounge</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.motherTounge}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="first-box">
+                                School Last Attended
+                              </td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.schoolLastAttended}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="first-box">
+                                Responsible Person for fee payment
+                              </td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.responsibleForFeePayment}
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td className="first-box">Diseases/Allergies</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.disease}
+                              </td>
+                            </tr>
+
+  <tr>
+                              <td className="first-box">Responsible for taking the ward / student home everyday</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.responsibleForWard}
+                              </td>
+                            </tr>
+
+
+                            <tr>
+                              <td className="first-box">Relation with the Ward</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.responsibleForWardRelation}
+                              </td>
+                            </tr>
+
+
+                            <tr>
+                              <td className="first-box">Opted for hostel</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.isHostel? "Yes" : "No"}
+                              </td>
+                            </tr>
+
+
+                             <tr>
+                              <td className="first-box">Transfer Certificate Submitted</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.tcSubmitted? "Yes" : "No"}
+                              </td>
+                            </tr>
+
+ <tr>
+                              <td className="first-box">Date of Birth Certificate Submitted</td>
+                              <td className="middle-box">:</td>
+                              <td className="third-box">
+                                {data?.personalInfo?.dobcSubmitted? "Yes" : "No"}
+                              </td>
+                            </tr>
+
                           </tbody>
                         </table>
                       </div>
@@ -208,16 +293,15 @@ handleGenerateFeeMemo(id)
                         <table className="student-table">
                           <thead></thead>
                           <tbody>
-
                             <tr>
                               <td className="first-box">Admission No.</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
-                                {data?.academicInfo?.admissionNo}
+                                {data?.admissionNo}
                               </td>
                             </tr>
 
-                             <tr>
+                            <tr>
                               <td className="first-box">Aadhar No.</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
@@ -225,8 +309,7 @@ handleGenerateFeeMemo(id)
                               </td>
                             </tr>
 
-
-                          <tr>
+                            <tr>
                               <td className="first-box">Class</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
@@ -258,7 +341,9 @@ handleGenerateFeeMemo(id)
                               <td className="first-box">Admission Status</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
-                                {data?.isActive === true ? 'Active' : 'InActive' }
+                                {data?.isActive === true
+                                  ? "Active"
+                                  : "InActive"}
                               </td>
                             </tr>
                             <tr>
@@ -335,7 +420,7 @@ handleGenerateFeeMemo(id)
                               </td>
                             </tr>
 
-                             <tr>
+                            <tr>
                               <td className="first-box">Mother's Occupation</td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
@@ -344,13 +429,15 @@ handleGenerateFeeMemo(id)
                             </tr>
 
                             <tr>
-                              <td className="first-box">Annual Family Income</td>
+                              <td className="first-box">
+                                Annual Family Income
+                              </td>
                               <td className="middle-box">:</td>
                               <td className="third-box">
                                 {data?.personalInfo?.familyIncome || "N/A"}
                               </td>
                             </tr>
-                            
+
                             <tr>
                               <td className="first-box">Guardian's Name</td>
                               <td className="middle-box">:</td>
