@@ -1,6 +1,8 @@
 const app = require("./app")
 const connectDatabase = require("./config/database")
 const dotenv = require("dotenv");
+const {startCronJobs} = require("./middleware/cornJobs");
+
 
 
 
@@ -15,6 +17,9 @@ process.on("uncaughtException", (err) => {
 
 // Dotenv Configuration
 dotenv.config();
+
+// Start Corn Jobs
+startCronJobs();
 
 
 // Database Connection

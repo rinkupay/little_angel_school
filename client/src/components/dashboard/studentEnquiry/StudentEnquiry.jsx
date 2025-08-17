@@ -1,7 +1,7 @@
-import React, { useEffect, useState, Fragment } from "react";
+import  { useEffect, useState, Fragment } from "react";
 import "../Dashboard.css";
 import "./StudentEnquiry.css";
-
+import Loader from "../../loader/Loader";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -29,10 +29,26 @@ const StudentEnquiry = () => {
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState({});
   const [studentId, setStudentId] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Handle Add Student Enquiry
   const [addStudentOpen, setAddStudentOpne] = useState(false);
 
+
+
+  // Handle search by name
+const handleSearchName = async () => {
+  if (!searchValue.trim()) return;
+
+  setLoading(true);
+  try {
+    await dispatch(fetchStudentEnquiryInfo({ searchValue })).unwrap();
+  } catch (error) {
+    console.error("Search failed:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Handle view student action
   const handleViewStudent = (id) => {
@@ -48,6 +64,7 @@ const StudentEnquiry = () => {
   };
 
   const [searchValue, setSearchValue] = useState("");
+  
 
   const handleSearchValue = (e) => {
     setSearchValue(e.target.value);
@@ -123,7 +140,7 @@ const StudentEnquiry = () => {
 
   // Fetch student enquiries on mount
   useEffect(() => {
-    dispatch(fetchStudentEnquiryInfo());
+    dispatch(fetchStudentEnquiryInfo({}));
   }, [dispatch]);
 
   // Open profile dialog when student data is available
@@ -140,6 +157,8 @@ const StudentEnquiry = () => {
         <h2 className="dashboard-heading">STUDENT ENQUIRY</h2>
 
         <div className="header-enquiry-wrapper">
+
+          {loading && <Loader />}
           <div className="header-enquiry-container">
             <div className="header-enquiry-menu">
               <div className="search-container">
@@ -150,8 +169,8 @@ const StudentEnquiry = () => {
                   placeholder="Search..."
                   value={searchValue}
                 />
-                <div className="search-icon-md">
-                  <IoMdSearch className="search-icon" />
+                <div className="search-icon-md" >
+                  <IoMdSearch className="search-icon" onClick={handleSearchName} />
                 </div>
               </div>
             </div>

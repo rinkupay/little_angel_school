@@ -39,27 +39,26 @@ exports.createStudentEnquiry = catchAsyncErrors(async (req, res) => {
 // <<<<<<<<<<<<============ GET ALL STUDENT ENQUIRY ================>>>>>>>>>>>>>>>>>>>>
 
 exports.getStudentEnquiry = catchAsyncErrors(async (req, res) => {
-  try {
-    const students = await Student.find();
-    if (!students) {
-      return res.status(500).json({
-        success: false,
-        message: "Students not found",
-      });
-    }
+  const { studentName } = req.query;
+  // If studentName is provided, filter by it
+  const filter = studentName ? { studentName: { $regex: studentName, $options: "i" } } : {};
+  // Fetch all students with the filter
+  const students = await Student.find(filter).sort({ createdAt: -1 });
 
-    return res.status(201).json({
-      success: true,
-      students,
-    });
-  } catch (error) {
+  if (!students) {
     return res.status(500).json({
       success: false,
-      message: "Server Error",
-      error: error.message,
+      message: "Students not found",
     });
-  }
+  } 
+  return res.status(200).json({
+    success: true,
+    students,
+  });
 });
+
+ 
+
 
 
 

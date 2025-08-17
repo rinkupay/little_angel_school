@@ -12,10 +12,10 @@ const initialState = {
 
 const fetchStudentEnquiryInfo = createAsyncThunk(
   "student/fetchStudentEnquiryInfo",
-  async (_, { rejectWithValue }) => {
+  async ({searchValue =""}, { rejectWithValue }) => {
     const baseUrl = import.meta.env.VITE_BASE_URL;
     try {
-      const response = await axios.get(`${baseUrl}/api/v1/student-enquiry`,{withCredentials:true});
+      const response = await axios.get(`${baseUrl}/api/v1/student-enquiry?studentName=${searchValue}`,{withCredentials:true});
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response ? error.response.data : error.message);
