@@ -13,7 +13,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Use of Cors
 app.use(cors({
-    origin: ["https://little-angel-school-client.onrender.com","https://littleangelsschool.school","https://little-angel-school-ug9i.vercel.app","http://localhost:4173","http://localhost:5173"],
+    origin: ["https://little-angel-school-client.onrender.com","https://little-angel-school-website.vercel.app","https://littleangelsschool.school","https://little-angel-school-ug9i.vercel.app","http://localhost:4173","http://localhost:5173"],
     methods:["POST","GET","DELETE","PUT","PATCH"],
     credentials: true
 }));
