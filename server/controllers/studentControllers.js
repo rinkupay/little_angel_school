@@ -1,7 +1,7 @@
 const Student = require("../models/studentModel");
 const Document = require("../models/studentDocumentsModel");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const { generateStudentId } = require("../utils/generateStudentId");
+const { generateId } = require("../utils/generateStudentId");
 const fs = require("fs").promises;
 
 // Student Registration (ADMIN)
@@ -14,7 +14,7 @@ exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
  
 
 
-  const studentId = await generateStudentId();
+  const studentId = await generateId();
 
   const image = req.file ? req.file.path : null;
 

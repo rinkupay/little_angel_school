@@ -49,6 +49,8 @@ const subscription = require("./routes/subscriptionRoutes");
 // WEB ROUTES
 const webRoutes = require("./routes/webRoutes");
 const webImage = require("./routes/imageRoute");
+// SMS Routes
+const sms = require("./routes/smsRoutes");
 
 app.use("/api/v1",user);
 app.use("/api/v1",student);
@@ -62,6 +64,7 @@ app.use("/api/v1",schoolDetail);
 app.use("/api/v1",subscription);
 app.use("/api/v1",webRoutes);
 app.use("/api/v1",webImage);
+app.use("/api/v1",sms);
 
 
 

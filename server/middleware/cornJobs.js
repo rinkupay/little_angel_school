@@ -3,7 +3,7 @@ const cron = require("node-cron");
 const { updateLateFeeOverDueFees } = require("./addLateFee");
 
 const startCronJobs = () => {
-  // Runs at 12:00 AM on the 1st of every month
+  
   cron.schedule("0 0 11 * *", async () => {
     try {
       const result = await updateLateFeeOverDueFees();
