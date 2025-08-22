@@ -53,6 +53,21 @@ const userSchema = new mongoose.Schema({
   
       resetPasswordToken: String,
       resetPasswordExpire: Date,
+
+      isEmailVerified: {
+        type: Boolean,
+        default: false, 
+      },
+      emailVerificationToken: String, 
+      emailVerificationExpire: Date,  
+
+      otp:{
+        type:String,
+      },
+      otpExpires:{
+        type:Date,
+      }
+
 },
 
 {timestamps:true}
@@ -75,14 +90,22 @@ userSchema.methods.getJWTToken = function () {
 
 // Generating Password Reset Token
 userSchema.methods.getResetPasswordToken = function(){
-
   // Generating Token
   const resetToken = crypto.randomBytes(20).toString("hex");
-
   // Hashing and adding resetPasswordToken to userSchema
   this.resetPasswordToken = crypto.createHash("sha256").update(resetToken).digest("hex");
   this.resetPasswordExpire = Date.now() + 15 * 60 * 1000;
   return resetToken;
+}
+
+// GEnerating Email Verification Token
+userSchema.methods.getEmailVerificationToken = function () {
+  // Generating Token
+  const emailVerificationToken = crypto.randomBytes(20).toString("hex");
+  // Hashing and adding emailVerificationToken to userSchema
+  this.emailVerificationToken = crypto.createHash("sha256").update(emailVerificationToken).digest("hex");
+  this.isEmailVerified = false; // Set email verification status to false
+  return emailVerificationToken;
 }
 
 

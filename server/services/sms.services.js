@@ -1,17 +1,18 @@
 const axios = require("axios");
 
-async function sendOtp({ otp, phoneNumber }) {
+async function sendSMS({ message, phoneNumber }) {
   try {
     const response = await axios.post(
       "https://www.fast2sms.com/dev/bulkV2",
       new URLSearchParams({
-        variables_values: otp,     
-        route: "otp",              
-        numbers: phoneNumber,      
+        message,                     // Your message text
+        route: "dlt",                // DLT route
+        sender_id: "SCHLID",         // Your approved Sender ID
+        numbers: phoneNumber,        // Mobile numbers
       }),
       {
         headers: {
-          authorization: process.env.FAST2SMS_API_KEY, // keep in .env
+          authorization: process.env.FAST2SMS_API_KEY,
           "Content-Type": "application/x-www-form-urlencoded",
         },
       }
@@ -23,4 +24,4 @@ async function sendOtp({ otp, phoneNumber }) {
   }
 }
 
-module.exports = { sendOtp };
+module.exports = { sendSMS };

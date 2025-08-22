@@ -9,7 +9,7 @@ import ProtectedRoute from "./components/routes/ProtectedRoute";
 import MasterRoute from "./components/routes/MasterRoute";
 import AdminRoute from "./components/routes/AdminRoute";
 import Loader from "./components/loader/Loader";
-// import SpeedDialPopUp from "./components/dashboard/speedDialPopUp/SpeedDialPopUp";
+import SpeedDialPopUp from "./components/dashboard/speedDialPopUp/SpeedDialPopUp";
 import SideBar from "./components/sidebar/SideBar";
 import { LuMenu } from "react-icons/lu";
 import { useLocation } from "react-router-dom";
@@ -22,17 +22,8 @@ const Register = lazy(() => import("./components/register/Register"));
 const RegisterStudent = lazy(() =>
   import("./components/dashboard/registerStudent/RegisterStudent")
 );
-// const InactiveStudentDetails = lazy(() =>
-//   import("./components/dashboard/inactiveStudentDetails/InactiveStudentDetails")
-// );
-// const InactiveStudentUpdate = lazy(() =>
-//   import("./components/dashboard/inactiveStudentDetails/InactiveStudentUpdate")
-// );
-// const InactiveStudentPayment = lazy(() =>
-//   import("./components/dashboard/inactiveStudentDetails/InactiveStudentPayment")
-// );
 
-const Students = lazy(() => import("./components/dashboard/Students"));
+
 const ActiveStudents = lazy(() =>
   import("./components/dashboard/ActiveStudents")
 );
@@ -103,6 +94,12 @@ const ResetPassword = lazy(() =>
 const ChangePassword = lazy(() =>
   import("./components/resetPassword/ChangePassword")
 );
+
+// Verify Email
+const EmailVerify = lazy(() =>
+  import("./components/verifyEmail/EmailVerify")
+);
+
 
 // TEACHERS ROUTES
 const Teachers = lazy(() =>
@@ -191,7 +188,7 @@ const App = () => {
   const currentDate = new Date().toISOString();
 
   const isMobileMenuActive =
-    location.pathname === "/" || location.pathname === "/register";
+    location.pathname === "/" || location.pathname === "/register" ;
 
   const { isLoggedIn } = useSelector((state) => state.user);
   const [isMenu, setIsMenu] = useState(false);
@@ -238,7 +235,7 @@ const App = () => {
       ) : (
         ""
       )}
-      {/* <div className="speed-dial">{isLoggedIn && <SpeedDialPopUp />}</div> */}
+       <div className="speed-dial">{isLoggedIn && <SpeedDialPopUp />}</div> 
       <div className="dashboard-right">
         <Suspense fallback={<Loader />}>
           <Routes>
@@ -352,40 +349,7 @@ const App = () => {
               }
             />
 
-            {/* ROUTE FOR INACTIVE STUDENT */}
-            {/* <Route
-              path="/student-inactive/:id"
-              element={
-                <ProtectedRoute>
-                  <AdminRoute>
-                    <InactiveStudentDetails />
-                  </AdminRoute>
-                </ProtectedRoute>
-              }
-            /> */}
-
-            {/*  ROUTE FOR ADMISSION FEE PAYMENT   */}
-            {/* <Route
-              path="/payment-admission/:id"
-              element={
-                <ProtectedRoute>
-                  <AdminRoute>
-                    <InactiveStudentPayment />
-                  </AdminRoute>
-                </ProtectedRoute>
-              }
-            /> */}
-
-            {/* <Route
-              path="/inactive-student-update/:id"
-              element={
-                <ProtectedRoute>
-                  <AdminRoute>
-                    <InactiveStudentUpdate />
-                  </AdminRoute>
-                </ProtectedRoute>
-              }
-            /> */}
+            {/* STUDENT DETAILS */}
 
             <Route
               path="/student/:id"
@@ -690,6 +654,7 @@ const App = () => {
               }
             />
 
+          
             {/* <<<<<<<<========== SCHOOL DETAILS SETTINGS */}
 
             <Route
@@ -720,6 +685,17 @@ const App = () => {
                 <MasterRoute>
                   <WebImagesGallery />
                 </MasterRoute>
+              }
+            />
+
+
+            {/* Verify Email */}
+            <Route
+              path="/verify-email"
+              element={
+                <ProtectedRoute>
+                  <EmailVerify />
+                </ProtectedRoute>
               }
             />
 

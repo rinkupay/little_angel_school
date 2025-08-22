@@ -1,29 +1,24 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// ProtectedRoute.jsx
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
-  const { adminDetails} = useSelector((state) => state.user);
+  const { isLoggedIn, adminDetails } = useSelector((state) => state.user);
 
-
-
+  const data = adminDetails?.user || {};
 
   useEffect(() => {
-    if (!adminDetails) {
+    if (!isLoggedIn || !adminDetails) {
       navigate("/");
+    } 
+     if (data?.isEmailVerified === false) {
+      navigate("/verify-email");
     }
-  }, [adminDetails]);
+  }, [isLoggedIn, adminDetails, data?.isEmailVerified, navigate]);
 
-  return  children ;
+  return children;
 };
 
 export default ProtectedRoute;
-
-
-
-
-
-
-
-

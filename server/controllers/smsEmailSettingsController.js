@@ -1,5 +1,4 @@
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const sendEmail = require("../middleware/sendMail");
 const EmailSms = require("../models/smsEmailSettingModel");
 
 // SET EMAIL AND SMS SETTINGS

@@ -1,29 +1,27 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import toast from 'react-hot-toast';
-
+// MasterRoute.jsx
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const MasterRoute = ({ children }) => {
   const navigate = useNavigate();
-  const {adminDetails,isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn, adminDetails } = useSelector((state) => state.user);
 
   const data = adminDetails?.user || {};
-  
-  
+
   useEffect(() => {
-    if (!adminDetails || !isLoggedIn) {
+    if (!isLoggedIn || !adminDetails) {
       navigate("/");
-    } else if (data?.role !== "super" ) {
-      navigate(`/profile/${data._id}`);
-      toast.error("Access denied")
+    } else if (data?.isEmailVerified === false) {
+      navigate("/verify-email");
+    } else if (data?.role !== "super") {
+      navigate(`/profile/${data?._id}`);
+      toast.error("Access denied");
     }
-  }, [adminDetails, data, navigate]);
+  }, [isLoggedIn, adminDetails, data?.isEmailVerified, data?.role, navigate]);
 
   return children;
 };
 
 export default MasterRoute;
-
-
-
