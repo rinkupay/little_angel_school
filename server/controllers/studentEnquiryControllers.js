@@ -36,6 +36,45 @@ exports.createStudentEnquiry = catchAsyncErrors(async (req, res) => {
 
 });
 
+
+
+// <<<<<<<<<<<<============ CREATE STUDENT PUBLIC  ENQUIRY ================>>>>>>>>>>>>>>>>>>>>
+
+exports.createPublicStudentEnquiry = catchAsyncErrors(async (req, res) => {
+  const { studentName, fatherName,gender, dateOfBirth, className, mobile, address } =
+    req.body;
+
+ 
+
+  try {
+    const student = await Student.create({
+      studentName,
+      fatherName,
+      gender,
+      dateOfBirth,
+      className,
+      mobile,
+      address,
+      
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: "Student added successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: error.message,
+    });
+  }
+
+});
+
+
+
+
 // <<<<<<<<<<<<============ GET ALL STUDENT ENQUIRY ================>>>>>>>>>>>>>>>>>>>>
 
 exports.getStudentEnquiry = catchAsyncErrors(async (req, res) => {
