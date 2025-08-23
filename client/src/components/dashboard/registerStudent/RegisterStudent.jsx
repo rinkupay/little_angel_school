@@ -329,7 +329,7 @@ const RegisterStudent = () => {
       isBusOpted,
     };
 
-    console.log("Personal Info:", personalInfo);
+    
 
     const academicInfo = {
       admissionNo,
